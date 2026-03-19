@@ -10,7 +10,7 @@ Users can register as either a student or a company, present themselves, and fin
 
 ## MVP (First Version)
 
-- [ ] Be mobile first
+- [x] Be mobile first
 - [ ] Have a landing page
 - [ ] Let the user choose:
   - [ ] Student
@@ -65,22 +65,59 @@ Users can register as either a student or a company, present themselves, and fin
 
 ---
 
-## First Steps
+# Networking Tool – To Do List
 
-- [ ] Set up React project
-- [ ] Create Git repository
-- [ ] Build landing page
-- [ ] Build forms
-- [ ] Handle input and submit
-- [ ] Store data locally
-- [ ] Display profiles
+## Project setup
 
----
+- [ ] Create React project
+- [ ] Open project in VS Code
+- [ ] Set up Git repository
+- [ ] Connect project to GitHub
+- [ ] Create basic folder structure
 
-## Later (If Time)
+## Landing page
 
-- [ ] Matching between students and companies
-- [ ] Filtering
-- [ ] Better UI/UX
-- [ ] Gamification or icebreakers
-- Gamification or icebreakers
+- [ ] Create landing page
+- [ ] Add button for "I am a student"
+- [ ] Add button for "I am a company"
+
+## Forms
+
+- [ ] Create student form
+- [ ] Create company form
+- [ ] Add input fields
+- [ ] Add submit button
+- [ ] Validate required fields
+
+## Data
+
+- [ ] Decide how to store data
+- [ ] Save student data
+- [ ] Save company data
+- [ ] Test submitted data
+
+## Profile display
+
+- [ ] Create profile cards or list
+- [ ] Show registered students
+- [ ] Show registered companies
+
+## Design and usability
+
+- [ ] Make layout mobile first
+- [ ] Make buttons easy to click
+- [ ] Add clear labels to form fields
+- [ ] Check contrast and readability
+
+## Deployment
+
+- [ ] Choose deployment platform
+- [ ] Deploy project
+- [ ] Test deployed version
+
+## Later
+
+- [ ] Add matching feature
+- [ ] Add filtering
+- [ ] Improve UI
+- [ ] Add extra networking features
