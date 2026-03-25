@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./StudentPage.css";
 
 export default function StudentPage() {
   return (
-    <div>
+    <div className="studentPage">
       <h1>Välkommen, student</h1>
       <ul>
         <li>
