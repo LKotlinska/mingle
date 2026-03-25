@@ -5,10 +5,22 @@ export default function StudentPage() {
   return (
     <div>
       <h1>Välkommen, student</h1>
-      <p>
-        Registera dit deltagande <Link to="/">här</Link>
-      </p>
-      <Link to="/">Tillbaka</Link>
+      <ul>
+        <li>
+          Registera ditt deltagande <Link to="/">här</Link>
+        </li>
+        <li>
+          <Link to="/match">Match</Link>
+        </li>
+        <li>
+          <Link to="/utmaningar">Utmaningar</Link>
+        </li>
+        <li>
+          <Link to="/company-list">Företags lista</Link>
+        </li>
+      </ul>
+
+      <Link to="/">Tillbaka till förstasidan</Link>
     </div>
   );
 }

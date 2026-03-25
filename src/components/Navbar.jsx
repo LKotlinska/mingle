@@ -31,6 +31,13 @@ export default function Navbar() {
       <div className={`menu-overlay ${isOpen ? "open" : ""}`}>
         <div className="navbar__links">
           <NavLink
+            to="/student"
+            onClick={closeMenu}
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            FÖRSTASIDAN
+          </NavLink>
+          <NavLink
             to="/match"
             onClick={closeMenu}
             className={({ isActive }) => (isActive ? "active" : "")}
