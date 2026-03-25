@@ -6,11 +6,8 @@ export default function RegistrationPage() {
   return (
     <div className="registrationPage">
       <h1>Registrera ditt deltagande</h1>
-      <ul>
-        <li>
-          <Link to="/student">Till studentsidan</Link>
-        </li>
-      </ul>
+
+      <Link to="/student">← Hem</Link>
     </div>
   );
 }

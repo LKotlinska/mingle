@@ -7,7 +7,7 @@ export default function ChallengePage() {
     <main className="challenge-page">
       <h1>UTMANINGAR</h1>
       <p>Här kommer listan med utmaningar.</p>
-      <Link to="/student">Dashboard</Link>
+      <Link to="/student">← Hem</Link>
     </main>
   );
 }

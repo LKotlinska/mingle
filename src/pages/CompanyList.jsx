@@ -6,7 +6,7 @@ export default function CompanyList() {
     <main>
       <h1>Företagslista</h1>
       <p>Här kommer listan med företag att visas.</p>
-      <Link to="/student">Tillbaka till studentsidan</Link>
+      <Link to="/student">← Hem</Link>
     </main>
   );
 }

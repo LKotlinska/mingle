@@ -7,7 +7,7 @@ export default function Match() {
     <main className="match-page">
       <h1>MATCH</h1>
       <p>Här kommer matchningsflödet för studenter och företag.</p>
-      <Link to="/student">Dashboard</Link>
+      <Link to="/student">← Hem</Link>
     </main>
   );
 }
