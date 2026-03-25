@@ -4,10 +4,10 @@ import "./RegistrationPage.css";
 
 export default function RegistrationPage() {
   return (
-    <div className="registrationPage">
+    <main className="registrationPage">
       <h1>Registrera ditt deltagande</h1>
 
       <Link to="/student">← Hem</Link>
-    </div>
+    </main>
   );
 }

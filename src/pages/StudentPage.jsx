@@ -4,7 +4,7 @@ import "./StudentPage.css";
 
 export default function StudentPage() {
   return (
-    <div className="studentPage">
+    <main className="studentPage">
       <h1>Välkommen, student</h1>
       <ul>
         <li>
@@ -21,7 +21,7 @@ export default function StudentPage() {
         </li>
       </ul>
 
-      <Link to="/">Tillbaka till förstasidan</Link>
-    </div>
+      <Link to="/">← Tillbaka till förstasidan</Link>
+    </main>
   );
 }

@@ -35,7 +35,7 @@ export default function Navbar() {
             onClick={closeMenu}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            FÖRSTASIDAN
+            HEM
           </NavLink>
           <NavLink
             to="/match"
