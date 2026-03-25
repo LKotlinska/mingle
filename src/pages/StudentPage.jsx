@@ -7,7 +7,7 @@ export default function StudentPage() {
       <h1>Välkommen, student</h1>
       <ul>
         <li>
-          Registera ditt deltagande <Link to="/">här</Link>
+          Registera ditt deltagande <Link to="/registrering">här</Link>
         </li>
         <li>
           <Link to="/match">Match</Link>
