@@ -1,12 +1,14 @@
 import './Badge.css'
-export default function Badge({ name }){
+
+export default function Badge({ name, fieldName, register }){
     return (
         <>
-            <input 
-                type="checkbox" 
+            <input
+                type="checkbox"
                 className="badge-checkbox"
-                name={name} 
                 id={name}
+                value={name}
+                {...(register ? register(fieldName) : { name })} // Connects input to the form
             />
             <label 
             htmlFor={name}
