@@ -6,6 +6,7 @@ import Match from "./pages/Match.jsx";
 import ChallengePage from "./pages/ChallengePage.jsx";
 import CompanyPage from "./pages/CompanyPage.jsx";
 import StudentPage from "./pages/StudentPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/matcha" element={<Navigate to="/match" replace />} />
         <Route path="/utmaningar" element={<ChallengePage />} />
         <Route path="/company" element={<CompanyPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/foretag" element={<Navigate to="/company" replace />} />
       </Routes>
     </BrowserRouter>
