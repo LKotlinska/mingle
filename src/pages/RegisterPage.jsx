@@ -7,7 +7,6 @@ export default function RegisterPage() {
 
     const { handleSubmit, register, reset } = useForm();
     const onSubmit = data => {
-        console.log('submitting', data)
         fetch('/api/register', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
