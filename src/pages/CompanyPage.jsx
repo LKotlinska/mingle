@@ -7,7 +7,8 @@ export default function CompanyPage() {
     <main className="companyPage">
       <h1>Company-sida</h1>
       <p>Välkommen, företag!</p>
-      <Link to="/student">Startsidan</Link>
-    </main>
-  );
+      <Link to="/register">Registrera ditt företag</Link>
+      <Link to="/">Tillbaka</Link>
+    </div>
+  )
 }
