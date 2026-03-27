@@ -16,6 +16,9 @@ import CompanyList from "./pages/CompanyList.jsx";
 import StudentPage from "./pages/StudentPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 
+function AppContent() {
+  const { pathname } = useLocation();
+  const showNavbar = pathname !== "/" && pathname !== "/company";
   return (
     <>
       {showNavbar && <Navbar />}
@@ -27,6 +30,7 @@ import RegisterPage from "./pages/RegisterPage.jsx";
         <Route path="/matcha" element={<Navigate to="/match" replace />} />
         <Route path="/utmaningar" element={<ChallengePage />} />
         <Route path="/company" element={<CompanyPage />} />
+        <Route path="/company-list" element={<CompanyList />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/foretag" element={<Navigate to="/company" replace />} />
       </Routes>
