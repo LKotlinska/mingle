@@ -1,17 +1,45 @@
-import skills from '../data/skills.json'
-import traits from '../data/traits.json'
-import Badge from './Badge'
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import CompanyFields from './CompanyFields';
 
 export default function RegisterForm() {
 
-    const { handleSubmit, register, reset } = useForm();
+    // - register: connects inputs to the form
+    // - watch: reads the live value of a field
+    const { handleSubmit, register, reset, watch } = useForm();
+
+    const [ verified, setVerified ] = useState(false);
+    const [ company, setCompany ] = useState(null);
+
+    // Watches the 'code' input live so handleVerify can use its current value
+    const code = watch('code', '');
+
     const onSubmit = data => {
         fetch('/api/register', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
-        }).then(() => reset()) // Clears form fields after fetch
+        }).then(() => {
+            // ----------------- SUCCESS MESSAGE HERE
+            setVerified(false)
+            setCompany(null)
+        })
+    }
+
+    const handleVerify = async () => {
+        const res = await fetch(`/api/register/${code}`);
+        const company = await res.json();
+        if (!company.code) {
+            // ----------------- ERROR MESSAGE HERE
+            return;
+        }
+
+        setCompany(company)
+        setVerified(true)
+        // Populates the form with the company's existing data.
+        // RHF uses these values to pre-check the matching badge checkboxes
+        // against the traits/skills arrays provided here.
+        reset({ code, name: company.name, traits: company.traits, skills: company.skills })
     }
 
     return (
@@ -20,54 +48,21 @@ export default function RegisterForm() {
                 <label htmlFor="code">
                     Ange din kod*
                 </label>
-                <input 
-                    type="text" 
-                    name="code" 
-                    id="code"
-                    minLength={4}
-                    maxLength={4}
-                    {...register('code', { required: true })}
-                />
-                <label htmlFor="name">Företag*</label>
                 <input
                     type="text"
-                    name="name"
-                    id="name"
-                    maxLength={25}
-                    {...register('name', { required: true })}
+                    name="code"
+                    id="code"
+                    minLength={6}
+                    maxLength={6}
+                    {...register('code', { required: true })}
                 />
-                <fieldset>
-                    <legend>
-                        Vad söker du för egenskaper hos praktikant?
-                    </legend>
-                    <div>
-                        Kryssa i top 5
-                    </div>
-                        {traits.data.map(trait => (
-                            <Badge
-                                name={trait}
-                                key={trait}
-                                fieldName="traits"
-                                register={register}
-                            />
-                        ))}
-                </fieldset>
-                <fieldset>
-                    <legend>
-                        Vad söker du för skills hos praktikant?
-                    </legend>
-                    <div>
-                        Kryssa i top 5
-                    </div>
-                        {skills.data.map(skill => (
-                            <Badge
-                                name={skill}
-                                key={skill}
-                                fieldName="skills"
-                                register={register}
-                            />
-                        ))}
-                </fieldset>
+                <button type="button" onClick={handleVerify}>Verifiera</button>
+
+                { verified && <CompanyFields
+                                company={company}
+                                register={register} // Passed down so CompanyFields uses the same form instance
+                /> }
+
                 <button type="submit">Submit</button>
             </form>
         </section>
