@@ -14,7 +14,7 @@ import ChallengePage from "./pages/ChallengePage.jsx";
 import CompanyPage from "./pages/CompanyPage.jsx";
 import CompanyList from "./pages/CompanyList.jsx";
 import StudentPage from "./pages/StudentPage.jsx";
-import RegisterPage from "./pages/RegisterPage.jsx";
+import RegistrationPage from "./pages/RegistrationPage.jsx";
 
 function AppContent() {
   const { pathname } = useLocation();
@@ -31,7 +31,7 @@ function AppContent() {
         <Route path="/utmaningar" element={<ChallengePage />} />
         <Route path="/company" element={<CompanyPage />} />
         <Route path="/company-list" element={<CompanyList />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
         <Route path="/foretag" element={<Navigate to="/company" replace />} />
       </Routes>
       <Footer />

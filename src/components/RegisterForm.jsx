@@ -1,9 +1,9 @@
 import skills from '../data/skills.json'
 import traits from '../data/traits.json'
-import Badge from '../components/Badge'
+import Badge from './Badge'
 import { useForm } from 'react-hook-form';
 
-export default function RegisterPage() {
+export default function RegisterForm() {
 
     const { handleSubmit, register, reset } = useForm();
     const onSubmit = data => {
@@ -16,7 +16,6 @@ export default function RegisterPage() {
 
     return (
         <section>
-            <h2>Registrera dig</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="code">
                     Ange din kod*
