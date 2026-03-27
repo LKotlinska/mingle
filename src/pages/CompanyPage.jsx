@@ -9,6 +9,6 @@ export default function CompanyPage() {
       <p>Välkommen, företag!</p>
       <Link to="/register">Registrera ditt företag</Link>
       <Link to="/">Tillbaka</Link>
-    </div>
+    </main>
   )
 }
