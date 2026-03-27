@@ -24,14 +24,17 @@ export default function RegisterForm() {
                     type="text" 
                     name="code" 
                     id="code"
-                    {...register('code')}
+                    minLength={4}
+                    maxLength={4}
+                    {...register('code', { required: true })}
                 />
                 <label htmlFor="name">Företag*</label>
                 <input
                     type="text"
                     name="name"
                     id="name"
-                    {...register('name')}
+                    maxLength={25}
+                    {...register('name', { required: true })}
                 />
                 <fieldset>
                     <legend>
