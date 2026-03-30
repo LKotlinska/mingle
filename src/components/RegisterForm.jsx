@@ -28,12 +28,14 @@ export default function RegisterForm() {
 
     const handleVerify = async () => {
         const res = await fetch(`/api/register/${code}`);
-        const company = await res.json();
-        if (!company.code) {
+        if (!res.ok) {
+            setCompany(null)
+            setVerified(false)
             // ----------------- ERROR MESSAGE HERE
             return;
         }
 
+        const company = await res.json();
         setCompany(company)
         setVerified(true)
         // Populates the form with the company's existing data.

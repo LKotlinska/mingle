@@ -34,7 +34,7 @@ router.get("/:code", async (req, res) => {
 
   if (!company) return res.status(404).json({ error: "Not found" });
 
-  res.json(company);
+  res.status(200).json(company);
 });
 
 export default router;
