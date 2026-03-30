@@ -1,3 +1,38 @@
 .studentPage {
   margin: 0;
 }
+
+.student-grid {
+  list-style: none;
+  padding: 0;
+  margin: 3rem 20px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.student-card {
+  min-height: 120px;
+  border: 1px solid #111;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.student-card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: inherit;
+}
+
+.student-card-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
