@@ -41,7 +41,7 @@ export default function RegisterForm() {
         // Populates the form with the company's existing data.
         // RHF uses these values to pre-check the matching badge checkboxes
         // against the traits/skills arrays provided here.
-        reset({ code, name: company.name, traits: company.traits, skills: company.skills })
+        reset({ code, name: company.name, employment: company.employment, traits: company.traits, skills: company.skills })
     }
 
     return (
@@ -54,8 +54,8 @@ export default function RegisterForm() {
                     type="text"
                     name="code"
                     id="code"
-                    minLength={6}
-                    maxLength={6}
+                    minLength={1}
+                    maxLength={10}
                     {...register('code', { required: true })}
                 />
                 <button type="button" onClick={verifyCompany}>Verifiera</button>

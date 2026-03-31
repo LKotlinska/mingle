@@ -12,7 +12,7 @@ const connectDB = async () => {
 router.post("/", async (req, res) => {
   await connectDB();
 
-  const { code, name, skills, traits } = req.body;
+  const { code, name, employment, skills, traits } = req.body;
 
   const company = await Company.findOne({ code: code });
 
@@ -20,6 +20,7 @@ router.post("/", async (req, res) => {
     return res.status(404).json({ error: "No company matching this code" });
   }
   company.name = name;
+  company.employment = employment;
   company.skills = skills;
   company.traits = traits;
   await company.save();

@@ -11,16 +11,40 @@ export default function CompanyFields({ company, register }) {
                 type="text"
                 name="name"
                 id="name"
+                minLength={1}
                 maxLength={25}
                 defaultValue={company.name}
                 {...register('name', { required: true })}
             />
             <fieldset>
                 <legend>
-                    Vad söker du för egenskaper hos praktikant?
+                    Vem söker ert företag?*
+                </legend>
+                <input
+                    type="checkbox"
+                    id="webbutvecklare"
+                    value="webbutvecklare"
+                    {...register('employment', { required: true })}
+                />
+                <label htmlFor='webbutvecklare'>
+                    Webbutvecklare
+                </label>
+                <input
+                    type="checkbox"
+                    id="digitaldesigner"
+                    value="digitaldesigner"
+                    {...register('employment', { required: true })}
+                />
+                <label htmlFor='digitaldesigner'>
+                    Digital Designer
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend>
+                    Vilka egenskaper är viktiga för er hos en praktikant?
                 </legend>
                 <div>
-                    Kryssa i top 5
+                   Välj upp till 5 favoriter
                 </div>
                     {traits.data.map(trait => (
                         <Badge
@@ -33,10 +57,10 @@ export default function CompanyFields({ company, register }) {
             </fieldset>
             <fieldset>
                 <legend>
-                    Vad söker du för skills hos praktikant?
+                    Vilka skills letar ni efter hos praktikanten?
                 </legend>
                 <div>
-                    Kryssa i top 5
+                    Välj upp till 5 favoriter
                 </div>
                     {skills.data.map(skill => (
                         <Badge
