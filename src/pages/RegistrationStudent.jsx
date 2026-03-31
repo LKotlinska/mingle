@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./RegistrationPage.css";
-import RegisterForm from "../components/RegisterForm";
+import RegisterStudent from "../components/RegisterStudent";
 
 export default function RegistrationPage() {
   return (
     <main className="registrationPage">
       <h1>Registrera ditt deltagande</h1>
-      <RegisterForm/>
+      <RegisterStudent />
       <Link to="/student">← Hem</Link>
     </main>
   );
