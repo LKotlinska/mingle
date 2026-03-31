@@ -54,6 +54,7 @@ export default function RegisterForm() {
                     type="text"
                     name="code"
                     id="code"
+                    placeholder='t.ex. c0de12'
                     minLength={1}
                     maxLength={10}
                     {...register('code', { required: true })}
