@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./RegistrationCompany.css";
-import RegisterForm from "../components/RegisterCompany";
+import RegisterCompany from "../components/RegisterCompany";
 
 export default function RegistrationPage() {
   return (
     <main className="registrationPage">
-      <h1>Registrera ditt deltagande</h1>
-      <RegisterForm/>
+      <div className="registrationSection">
+        <h1 className="formHeading">Registrera ditt företag</h1>
+        <RegisterCompany/>
+      </div>
       <Link to="/company">← Hem</Link>
     </main>
   );

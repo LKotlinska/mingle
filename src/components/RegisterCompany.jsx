@@ -1,8 +1,9 @@
+import './RegisterCompany.css'
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import CompanyFields from './CompanyFields';
+import CompanyFields from './forms/CompanyFields';
 
-export default function RegisterForm() {
+export default function RegisterCompany() {
 
     // - register: connects inputs to the form
     // - watch: reads the live value of a field
@@ -13,6 +14,8 @@ export default function RegisterForm() {
 
     // Watches the 'code' input live so verifyCompany can use its current value
     const code = watch('code', '');
+    const traits = watch('traits', []);
+    const skills = watch('skills', []);
 
     const onSubmit = data => {
         fetch('/api/register', {
@@ -47,26 +50,36 @@ export default function RegisterForm() {
     return (
         <section>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="code">
-                    Ange din kod*
-                </label>
-                <input
-                    type="text"
-                    name="code"
-                    id="code"
-                    placeholder='t.ex. c0de12'
-                    minLength={1}
-                    maxLength={10}
-                    {...register('code', { required: true })}
-                />
-                <button type="button" onClick={verifyCompany}>Verifiera</button>
+                <div className='formGroup'>
+                    <label htmlFor="code" className='formLabel'>
+                        Ange din företagskod*
+                    </label>
+                    <div className='inputGrid'>
+                        <input
+                            type="text"
+                            name="code"
+                            id="code"
+                            placeholder='t.ex. c0de12'
+                            minLength={1}
+                            maxLength={10}
+                            {...register('code', { required: true })}
+                        />
+                        <button type="button" onClick={verifyCompany}>Verifiera</button>
+                    </div>
+                </div>
 
-                { verified && <CompanyFields
-                                company={company}
-                                register={register} // Passed down so CompanyFields uses the same form instance
-                /> }
+                { verified && 
+                    <>
+                        <CompanyFields
+                            company={company}
+                            register={register} // Passed down so CompanyFields uses the same form instance
+                            traits={traits}
+                            skills={skills}
+                        /> 
+                        <button type="submit">Submit</button>
+                    </>
+                }
 
-                <button type="submit">Submit</button>
             </form>
         </section>
     )

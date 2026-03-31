@@ -1,0 +1,55 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
+}
+
+.formLabel {
+  display: block;
+  font-weight: 700;
+  font-size: 1.1em;
+  color: var(--yrgo-blue);
+  margin-bottom: 0.6em;
+}
+
+fieldset,
+legend {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+input[type="text"] {
+  box-sizing: border-box;
+  height: 2.5em;
+  border: 0.01em solid black;
+  border-radius: 0.6em;
+  padding: 0.1em 0.5em;
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  width: 1.3em;
+  aspect-ratio: 1 / 1;
+  border: 0.01em solid black;
+  accent-color: var(--yrgo-red);
+}
+
+.inputGrid {
+  display: grid;
+  grid-template-columns: 0.75fr 0.25fr;
+  gap: 0.5em;
+}
+
+button {
+  background-color: var(--yrgo-blue);
+  color: white;
+  border-radius: 2em;
+  border: none;
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
