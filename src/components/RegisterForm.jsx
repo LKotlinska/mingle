@@ -11,7 +11,7 @@ export default function RegisterForm() {
     const [ verified, setVerified ] = useState(false);
     const [ company, setCompany ] = useState(null);
 
-    // Watches the 'code' input live so handleVerify can use its current value
+    // Watches the 'code' input live so verifyCompany can use its current value
     const code = watch('code', '');
 
     const onSubmit = data => {
@@ -26,7 +26,7 @@ export default function RegisterForm() {
         })
     }
 
-    const handleVerify = async () => {
+    const verifyCompany = async () => {
         const res = await fetch(`/api/register/${code}`);
         if (!res.ok) {
             setCompany(null)
@@ -58,7 +58,7 @@ export default function RegisterForm() {
                     maxLength={6}
                     {...register('code', { required: true })}
                 />
-                <button type="button" onClick={handleVerify}>Verifiera</button>
+                <button type="button" onClick={verifyCompany}>Verifiera</button>
 
                 { verified && <CompanyFields
                                 company={company}
