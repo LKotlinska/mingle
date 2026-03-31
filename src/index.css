@@ -10,7 +10,8 @@ body,
 }
 
 body {
-  margin: 10px;
+  margin: 0;
+  background-image: url("bg-pic.png");
 }
 
 #root {
@@ -27,4 +28,22 @@ ul,
 ol {
   list-style: none;
   padding-left: 0;
+}
+
+.challenge-page > *:not(.title-pill) {
+  align-self: center;
+}
+
+.title-pill {
+  width: 85%;
+  margin: 0;
+  margin-top: 20px;
+  padding: 10px 10px;
+  border-left: none;
+  border-radius: 0 999px 999px 0;
+  background-color: var(--yrgo-red);
+  font-size: 1.3rem;
+  color: white;
+  box-sizing: border-box;
+  text-align: left;
 }
