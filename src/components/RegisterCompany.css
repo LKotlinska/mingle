@@ -56,7 +56,10 @@ button:disabled {
 .btnSubmit {
   width: min-content;
   padding: 1em 2em;
-  margin-left: auto;
+}
+
+.btnUndo {
+  background-color: var(--yrgo-red);
 }
 
 .checkboxGroup {
@@ -72,4 +75,9 @@ input[type="checkbox"].errorBorder {
 
 input[type="checkbox"].errorBorder {
   outline: 0.1em solid var(--yrgo-red);
+}
+
+.formButtonContainer {
+  display: flex;
+  justify-content: space-between;
 }

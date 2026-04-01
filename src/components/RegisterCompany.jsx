@@ -1,6 +1,7 @@
 import './RegisterCompany.css'
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CompanyFields from './forms/CompanyFields';
 import InlineError from './forms/InlineError';
 import Alert from './Alert';
@@ -100,7 +101,12 @@ export default function RegisterCompany() {
                             errors={errors}
                         /> 
                         { error && <InlineError error={error}/> }
-                        <button className='btnSubmit' type="submit">Spara</button>
+                        <div className="formButtonContainer">
+                            <Link to="/company">
+                                <button className='btnSubmit btnUndo' type="button">Ångra</button>
+                            </Link>
+                            <button className='btnSubmit' type="submit">Spara</button>
+                        </div>
                     </>
                 }
 
