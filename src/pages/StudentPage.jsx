@@ -49,7 +49,7 @@ export default function StudentPage() {
         <li className="student-card">
           <Link className="student-card-link" to="/registrering">
             <img className="student-card-icon" src={regIcon} alt="" />
-            <span>Anmäl din närvaro</span>
+            <span>Anmäl dig</span>
           </Link>
         </li>
       </ul>
