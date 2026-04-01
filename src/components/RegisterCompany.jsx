@@ -2,15 +2,17 @@ import './RegisterCompany.css'
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import CompanyFields from './forms/CompanyFields';
+import InlineError from './forms/InlineError';
 
 export default function RegisterCompany() {
 
     // - register: connects inputs to the form
     // - watch: reads the live value of a field
-    const { handleSubmit, register, reset, watch } = useForm();
+    const { handleSubmit, register, reset, watch, formState: { errors } } = useForm();
 
     const [ verified, setVerified ] = useState(false);
     const [ company, setCompany ] = useState(null);
+    const [ error, setError ] = useState("");
 
     // Watches the 'code' input live so verifyCompany can use its current value
     const code = watch('code', '');
@@ -30,10 +32,13 @@ export default function RegisterCompany() {
     }
 
     const verifyCompany = async () => {
+        setError("")
         const res = await fetch(`/api/register/${code}`);
         if (!res.ok) {
+            const { error } = await res.json()
             setCompany(null)
             setVerified(false)
+            setError(error)
             // ----------------- ERROR MESSAGE HERE
             return;
         }
@@ -59,22 +64,32 @@ export default function RegisterCompany() {
                             type="text"
                             name="code"
                             id="code"
+                            className={(error || errors.code) ? "errorBorder" : ""}
                             placeholder='t.ex. c0de12'
                             minLength={1}
                             maxLength={10}
-                            {...register('code', { required: true })}
+                            {...register('code', {
+                            required: 'Företagskod krävs',
+                            pattern: {
+                                value: /^[a-zA-Z0-9]+$/,
+                                message: 'Koden får bara innehålla bokstäver och siffror'
+                            }
+                        })}
                         />
                         <button type="button" onClick={verifyCompany}>Verifiera</button>
                     </div>
+                    { (error || errors.code) && <InlineError error={error || errors.code?.message}/>}
                 </div>
 
-                { verified && 
+                { verified &&
                     <>
                         <CompanyFields
                             company={company}
                             register={register} // Passed down so CompanyFields uses the same form instance
                             traits={traits}
                             skills={skills}
+                            error={error}
+                            errors={errors}
                         /> 
                         <button className='btnSubmit' type="submit">Spara</button>
                     </>

@@ -1,20 +1,22 @@
 import express from "express";
-import Company from "../models/company.js";
+import Company, { validateCompany } from "../models/company.js";
 
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const { code, name, employment, skills, traits } = req.body;
-
+  const { code, ...fields } = req.body;
   const company = await Company.findOne({ code: code });
 
   if (!company) {
-    return res.json({ error: "Företagskoden är ogiltig" });
+    return res.status(404).json({ error: "Företagskoden är ogiltig" });
   }
-  company.name = name;
-  company.employment = employment;
-  company.skills = skills;
-  company.traits = traits;
+
+  const { error } = validateCompany(fields);
+  if (error) {
+    res.status(422).json({ error: error.details[0].message });
+  }
+
+  Object.assign(company, fields);
   await company.save();
   res.json({ ok: true });
 });

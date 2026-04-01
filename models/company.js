@@ -20,12 +20,13 @@ const companySchema = new mongoose.Schema({
 
 function validateCompany(company) {
   const schema = Joi.object({
-    name: Joi.string().trim().min(1).max(25).required().messages({
+    name: Joi.string().trim().min(1).max(25).pattern(/^[a-zA-ZåäöÅÄÖ0-9\s.,\-&'()!]+$/).required().messages({
       "string.base": "Namnet måste vara text",
       "string.empty": "Namnet får inte vara tomt",
       "string.min": "Namnet är för kort",
       "string.max": "Namnet får max vara 25 tecken",
       "any.required": "Namnet krävs",
+      "string.pattern.base": "Namnet innehåller ogiltiga tecken",
     }),
     employment: Joi.array()
       .items(Joi.string().trim().min(1))
@@ -38,6 +39,7 @@ function validateCompany(company) {
     traits: Joi.array().items(Joi.string().trim().min(1)),
     skills: Joi.array().items(Joi.string().trim().min(1)),
   });
-  return schema.validateCompany(company);
+  return schema.validate(company);
 }
+export { validateCompany };
 export default mongoose.model("Company", companySchema);

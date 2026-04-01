@@ -59,3 +59,12 @@ button {
   align-items: center;
   gap: 0.25em;
 }
+
+input.errorBorder,
+input[type="checkbox"].errorBorder {
+  border: 0.01em solid var(--yrgo-red);
+}
+
+input[type="checkbox"].errorBorder {
+  outline: 0.1em solid var(--yrgo-red);
+}

@@ -3,8 +3,9 @@ import traits from '../../data/traits.json'
 import './CompanyFields.css'
 import Badge from './Badge'
 import Limit from './Limit'
+import InlineError from './InlineError'
 
-export default function CompanyFields({ company, register, traits: selectedTraits = [], skills: selectedSkills = [] }) {
+export default function CompanyFields({ error, errors = {}, company, register, traits: selectedTraits = [], skills: selectedSkills = [] }) {
 
     return (
         <>
@@ -14,12 +15,21 @@ export default function CompanyFields({ company, register, traits: selectedTrait
                     type="text"
                     name="name"
                     id="name"
+                    className={(error || errors.name) ? "errorBorder" : ""}
                     minLength={1}
                     maxLength={25}
                     placeholder='t.ex. Microsoft'
                     defaultValue={company.name}
-                    {...register('name', { required: true })}
+                    {...register('name', {
+                        required: 'Företagsnamn krävs',
+                        pattern: {
+                            value: /^[a-zA-ZåäöÅÄÖ0-9\s.,\-&'()!]+$/,
+                            message: 'Ogiltiga tecken i företagsnamn'
+                        }
+                    })}
                 />
+                { errors.name && <InlineError error={errors.name.message}/>}
+
             </div>
 
             <fieldset className='formGroup'>
@@ -30,6 +40,7 @@ export default function CompanyFields({ company, register, traits: selectedTrait
                     <input
                         type="checkbox"
                         id="webbutvecklare"
+                        className={(error || errors.employment) ? "errorBorder" : ""}
                         value="webbutvecklare"
                         {...register('employment', { required: true })}
                     />
@@ -42,6 +53,7 @@ export default function CompanyFields({ company, register, traits: selectedTrait
                     <input
                         type="checkbox"
                         id="digitaldesigner"
+                        className={(error || errors.employment) ? "errorBorder" : ""}
                         value="digitaldesigner"
                         {...register('employment', { required: true })}
                     />
@@ -49,6 +61,7 @@ export default function CompanyFields({ company, register, traits: selectedTrait
                         Digital Designer
                     </label>
                 </div>
+                { errors.employment && <InlineError error='Minst en roll måste väljas'/>}
             </fieldset>
 
             <fieldset className='formGroup'>

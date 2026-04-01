@@ -1,0 +1,13 @@
+.fieldError {
+  color: var(--yrgo-red);
+  margin: 0.5em 0;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 500;
+}
+
+.errorSymbol {
+  font-size: 1.3em;
+}
