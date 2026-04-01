@@ -21,7 +21,7 @@ legend {
 
 input[type="text"] {
   box-sizing: border-box;
-  height: 2.5em;
+  height: 3.5em;
   border: 0.01em solid black;
   border-radius: 0.6em;
   padding: 0.1em 0.5em;
@@ -46,6 +46,12 @@ button {
   color: white;
   border-radius: 2em;
   border: none;
+}
+
+.btnSubmit {
+  width: min-content;
+  padding: 1em 2em;
+  margin-left: auto;
 }
 
 .checkboxGroup {

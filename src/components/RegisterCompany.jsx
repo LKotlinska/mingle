@@ -76,7 +76,7 @@ export default function RegisterCompany() {
                             traits={traits}
                             skills={skills}
                         /> 
-                        <button type="submit">Submit</button>
+                        <button className='btnSubmit' type="submit">Spara</button>
                     </>
                 }
 
