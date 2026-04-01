@@ -18,7 +18,7 @@ import RegistrationPage from "./pages/RegistrationStudent.jsx";
 
 function AppContent() {
   const { pathname } = useLocation();
-  const showNavbar = pathname !== "/" && pathname !== "/company";
+  const showNavbar = pathname !== "/";
   return (
     <>
       {showNavbar && <Navbar />}
