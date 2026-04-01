@@ -5,7 +5,7 @@ import Badge from './Badge'
 import Limit from './Limit'
 import InlineError from './InlineError'
 
-export default function CompanyFields({ error, errors = {}, company, register, traits: selectedTraits = [], skills: selectedSkills = [] }) {
+export default function CompanyFields({ errors = {}, company, register, traits: selectedTraits = [], skills: selectedSkills = [] }) {
 
     return (
         <>
@@ -15,7 +15,7 @@ export default function CompanyFields({ error, errors = {}, company, register, t
                     type="text"
                     name="name"
                     id="name"
-                    className={(error || errors.name) ? "errorBorder" : ""}
+                    className={errors.name ? "errorBorder" : ""}
                     minLength={1}
                     maxLength={25}
                     placeholder='t.ex. Microsoft'
@@ -40,7 +40,7 @@ export default function CompanyFields({ error, errors = {}, company, register, t
                     <input
                         type="checkbox"
                         id="webbutvecklare"
-                        className={(error || errors.employment) ? "errorBorder" : ""}
+                        className={errors.employment ? "errorBorder" : ""}
                         value="webbutvecklare"
                         {...register('employment', { required: true })}
                     />
@@ -53,7 +53,7 @@ export default function CompanyFields({ error, errors = {}, company, register, t
                     <input
                         type="checkbox"
                         id="digitaldesigner"
-                        className={(error || errors.employment) ? "errorBorder" : ""}
+                        className={errors.employment ? "errorBorder" : ""}
                         value="digitaldesigner"
                         {...register('employment', { required: true })}
                     />
