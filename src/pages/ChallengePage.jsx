@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./ChallengePage.css";
+import BackLink from "../components/BackLink";
 import challange from "../data/challange.json";
-import challengeImage from "../assets/images/challange.png";
+import challengeImage from "../assets/images/challanges-pic.png";
 
 export default function ChallengePage() {
   const [selectedChallenges, setSelectedChallenges] = useState([]);
@@ -24,6 +25,7 @@ export default function ChallengePage() {
 
   return (
     <main className="challenge-page">
+      <BackLink to="/student" />
       <h1 className="title-pill">Ge förslag på tre utmaningar</h1>
 
       <img className="challenge-image" src={challengeImage} alt="Utmaningar" />
@@ -43,10 +45,6 @@ export default function ChallengePage() {
       >
         {selectedChallenges.length === 0 ? "Slumpa" : "Slumpa nya"}
       </button>
-
-      <Link className="challenge-home-link" to="/student">
-        ← Hem
-      </Link>
     </main>
   );
 }

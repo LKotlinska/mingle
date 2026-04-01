@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./StudentPage.css";
+import BackLink from "../components/BackLink";
 import regIcon from "../assets/images/reg-icon.png";
 import matchIcon from "../assets/images/match-icon.png";
 import challengeIcon from "../assets/images/challange-icon.png";
@@ -13,16 +14,7 @@ import curlIcon from "../assets/images/curl41.png";
 export default function StudentPage() {
   return (
     <main className="studentPage">
-      <Link
-        to="/"
-        style={{
-          fontSize: "36px",
-          fontWeight: "bold",
-          color: "var(--yrgo-blue)",
-        }}
-      >
-        ←{" "}
-      </Link>
+      <BackLink to="/" />
       <div className="student-decor">
         <img className="student-decor-stars" src={starsIcon} alt="" />
         <img className="student-decor-snake" src={snakeIcon} alt="" />

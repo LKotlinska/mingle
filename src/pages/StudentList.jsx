@@ -1,22 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BackLink from "../components/BackLink";
+import "./StudentList.css";
 
 export default function StudentList() {
   return (
-    <main style={{ padding: "24px" }}>
-      <Link
-        to="/company"
-        style={{
-          fontSize: "36px",
-          fontWeight: "bold",
-          color: "var(--yrgo-blue)",
-          textDecoration: "none",
-        }}
-      >
-        ←{" "}
-      </Link>
+    <main>
+      <BackLink to="/company" />
 
-      <h1 style={{ marginTop: "12px" }}>Studentlista</h1>
+      <h1>Studentlista</h1>
       <p>Här kan ni visa alla studenter.</p>
     </main>
   );

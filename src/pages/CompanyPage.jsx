@@ -8,20 +8,12 @@ import starsIcon from "../assets/images/stars.png";
 import snakeIcon from "../assets/images/snake42.png";
 import snakeBottomIcon from "../assets/images/snake41.png";
 import curlIcon from "../assets/images/curl41.png";
+import BackLink from "../components/BackLink";
 
 export default function CompanyPage() {
   return (
     <main className="studentPage companyPage">
-      <Link
-        to="/"
-        style={{
-          fontSize: "36px",
-          fontWeight: "bold",
-          color: "var(--yrgo-blue)",
-        }}
-      >
-        ←{" "}
-      </Link>
+      <BackLink to="/" />
       <div className="student-decor">
         <img className="student-decor-stars" src={starsIcon} alt="" />
         <img className="student-decor-snake" src={snakeIcon} alt="" />
