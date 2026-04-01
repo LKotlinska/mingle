@@ -5,12 +5,14 @@ import RegisterCompany from "../components/RegisterCompany";
 
 export default function RegistrationPage() {
   return (
-    <main className="registrationPage">
-      <div className="registrationSection">
-        <h1 className="formHeading">Registrera ditt företag</h1>
-        <RegisterCompany/>
-      </div>
+    <>
       <Link to="/company">← Hem</Link>
-    </main>
+      <main className="registrationPage">
+        <div className="registrationSection">
+          <h1 className="formHeading">Registrera ditt företag</h1>
+          <RegisterCompany/>
+        </div>
+      </main>
+    </>
   );
 }
