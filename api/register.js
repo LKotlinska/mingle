@@ -9,7 +9,7 @@ router.post("/", async (req, res) => {
   const company = await Company.findOne({ code: code });
 
   if (!company) {
-    return res.json({ error: "No company matching this code" });
+    return res.json({ error: "Företagskoden är ogiltig" });
   }
   company.name = name;
   company.employment = employment;
@@ -24,7 +24,7 @@ router.get("/:code", async (req, res) => {
   const company = await Company.findOne({ code: code });
 
   if (!company)
-    return res.status(404).json({ error: "No company matching this code" });
+    return res.status(404).json({ error: "Företagskoden är ogiltig" });
 
   res.status(200).json(company);
 });

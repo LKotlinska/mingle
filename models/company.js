@@ -21,19 +21,23 @@ const companySchema = new mongoose.Schema({
 function validateCompany(company) {
   const schema = Joi.object({
     name: Joi.string().trim().min(1).max(25).required().messages({
-      "string.base": "Name must be text.",
-      "string.empty": "Name cannot be empty.",
-      "string.min": "Name must be at least 1 character long.",
-      "string.max": "Name cannot exceed 25 characters.",
-      "any.required": "Name is required.",
+      "string.base": "Namnet måste vara text.",
+      "string.empty": "Namnet får inte vara tomt.",
+      "string.min": "Namnet är för kort.",
+      "string.max": "Namnet får max vara 25 tecken.",
+      "any.required": "Namnet krävs.",
     }),
-    employment: Joi.array().items(Joi.string().trim().min(1)).min(1).required().messages({
-      "array.min": "At least one employment type is required.",
-      "any.required": "Employment is required.",
-    }),
+    employment: Joi.array()
+      .items(Joi.string().trim().min(1))
+      .min(1)
+      .required()
+      .messages({
+        "array.min": "Minst en anställningstyp krävs.",
+        "any.required": "Anställningstyp krävs.",
+      }),
     traits: Joi.array().items(Joi.string().trim().min(1)),
     skills: Joi.array().items(Joi.string().trim().min(1)),
   });
-  return schema.validate(company);
+  return schema.validateCompany(company);
 }
 export default mongoose.model("Company", companySchema);
