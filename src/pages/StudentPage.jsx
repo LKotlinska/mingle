@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./StudentPage.css";
-import registerIcon from "../assets/images/registrera-icom.png";
+import regIcon from "../assets/images/reg-icon.png";
 import matchIcon from "../assets/images/match-icon.png";
 import challengeIcon from "../assets/images/challange-icon.png";
 import companyListIcon from "../assets/images/Company-List-icon.png";
@@ -13,7 +13,7 @@ export default function StudentPage() {
       <ul className="student-grid">
         <li className="student-card">
           <Link className="student-card-link" to="/registrering">
-            <img className="student-card-icon" src={registerIcon} alt="" />
+            <img className="student-card-icon" src={regIcon} alt="" />
             <span>Registera ditt deltagande här</span>
           </Link>
         </li>
