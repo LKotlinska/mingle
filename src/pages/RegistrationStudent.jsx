@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./RegistrationPage.css";
+import "./RegistrationStudent.css";
 import RegisterStudent from "../components/RegisterStudent";
 
-export default function RegistrationPage() {
+export default function RegistrationStudent() {
   return (
     <main className="registrationPage">
       <h1>Registrera ditt deltagande</h1>

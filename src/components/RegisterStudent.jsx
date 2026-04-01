@@ -19,7 +19,7 @@ export default function RegisterStudent() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3001/api/registrations", {
+      const response = await fetch("http://localhost:3000/api/registrations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
