@@ -48,6 +48,11 @@ button {
   border: none;
 }
 
+button:disabled {
+  background-color: rgb(110, 111, 128);
+  color: white;
+}
+
 .btnSubmit {
   width: min-content;
   padding: 1em 2em;

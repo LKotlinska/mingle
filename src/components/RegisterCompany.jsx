@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import CompanyFields from './forms/CompanyFields';
 import InlineError from './forms/InlineError';
+import Alert from './Alert';
 
 export default function RegisterCompany() {
 
@@ -13,22 +14,29 @@ export default function RegisterCompany() {
     const [ verified, setVerified ] = useState(false);
     const [ company, setCompany ] = useState(null);
     const [ error, setError ] = useState("");
+    const [ alert, setAlert ] = useState("");
 
     // Watches the 'code' input live so verifyCompany can use its current value
     const code = watch('code', '');
     const traits = watch('traits', []);
     const skills = watch('skills', []);
 
-    const onSubmit = data => {
-        fetch('/api/register', {
+    const onSubmit = async data => {
+        const res = await fetch('/api/register', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
-        }).then(() => {
-            // ----------------- SUCCESS MESSAGE HERE
-            setVerified(false)
-            setCompany(null)
         })
+        if (!res.ok) {
+            const { error } = await res.json()
+            setError(error)
+            return
+        }
+        setError("")
+        setAlert("Uppdaterad")
+        setTimeout(() => setAlert(""), 3000)
+        setVerified(false)
+        setCompany(null)
     }
 
     const verifyCompany = async () => {
@@ -39,7 +47,6 @@ export default function RegisterCompany() {
             setCompany(null)
             setVerified(false)
             setError(error)
-            // ----------------- ERROR MESSAGE HERE
             return;
         }
 
@@ -54,6 +61,7 @@ export default function RegisterCompany() {
 
     return (
         <section>
+            { alert && <Alert alert={alert}/>}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='formGroup'>
                     <label htmlFor="code" className='formLabel'>
@@ -65,6 +73,7 @@ export default function RegisterCompany() {
                             name="code"
                             id="code"
                             className={(error || errors.code) ? "errorBorder" : ""}
+                            disabled={company}
                             placeholder='t.ex. c0de12'
                             minLength={1}
                             maxLength={10}
@@ -76,7 +85,7 @@ export default function RegisterCompany() {
                             }
                         })}
                         />
-                        <button type="button" onClick={verifyCompany}>Verifiera</button>
+                        <button type="button" disabled={company} onClick={verifyCompany}>Verifiera</button>
                     </div>
                     { (error || errors.code) && <InlineError error={error || errors.code?.message}/>}
                 </div>
@@ -88,9 +97,9 @@ export default function RegisterCompany() {
                             register={register} // Passed down so CompanyFields uses the same form instance
                             traits={traits}
                             skills={skills}
-                            error={error}
                             errors={errors}
                         /> 
+                        { error && <InlineError error={error}/> }
                         <button className='btnSubmit' type="submit">Spara</button>
                     </>
                 }
