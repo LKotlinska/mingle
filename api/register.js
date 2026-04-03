@@ -1,38 +1,32 @@
 import express from "express";
-import mongoose from "mongoose";
-import "dotenv/config";
-import Company from "../models/company.js";
+import Company, { validateCompany } from "../models/company.js";
 
 const router = express.Router();
 
-const connectDB = async () => {
-  await mongoose.connect(process.env.DB_URI);
-};
-
 router.post("/", async (req, res) => {
-  await connectDB();
-
-  const { code, name, skills, traits } = req.body;
-
+  const { code, ...fields } = req.body;
   const company = await Company.findOne({ code: code });
 
   if (!company) {
-    return res.status(404).json({ error: "No company matching this code" });
+    return res.status(404).json({ error: "Företagskoden är ogiltig" });
   }
-  company.name = name;
-  company.skills = skills;
-  company.traits = traits;
+
+  const { error } = validateCompany(fields);
+  if (error) {
+    res.status(422).json({ error: error.details[0].message });
+  }
+
+  Object.assign(company, fields);
   await company.save();
   res.json({ ok: true });
 });
 
 router.get("/:code", async (req, res) => {
-  await connectDB();
   const { code } = req.params;
   const company = await Company.findOne({ code: code });
-  console.log(company);
 
-  if (!company) return res.status(404).json({ error: "Not found" });
+  if (!company)
+    return res.status(404).json({ error: "Företagskoden är ogiltig" });
 
   res.status(200).json(company);
 });

@@ -15,7 +15,7 @@ import CompanyPage from "./pages/CompanyPage.jsx";
 import CompanyList from "./pages/CompanyList.jsx";
 import StudentList from "./pages/StudentList.jsx";
 import StudentPage from "./pages/StudentPage.jsx";
-import RegistrationPage from "./pages/RegistrationStudent.jsx";
+import RegistrationCompany from "./components/RegistrationCompany.jsx";
 
 function AppContent() {
   const { pathname } = useLocation();
@@ -26,15 +26,13 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/student" element={<StudentPage />} />
-        <Route path="/registrering" element={<RegistrationPage />} />
-        <Route path="/match" element={<Match />} />
-        <Route path="/matcha" element={<Navigate to="/match" replace />} />
-        <Route path="/utmaningar" element={<ChallengePage />} />
-        <Route path="/company" element={<CompanyPage />} />
-        <Route path="/company-list" element={<CompanyList />} />
+        <Route path="/student/registrering" element={<RegistrationStudent />} />
         <Route path="/student-list" element={<StudentList />} />
-        <Route path="/registration" element={<RegistrationPage />} />
-        <Route path="/foretag" element={<Navigate to="/company" replace />} />
+        <Route path="/match" element={<Match />} />
+        <Route path="/utmaningar" element={<ChallengePage />} />
+        <Route path="/foretag" element={<CompanyPage />} />
+        <Route path="/foretag-list" element={<CompanyList />} />
+        <Route path="/foretag/registration" element={<RegistrationCompany />} />
       </Routes>
       <Footer />
     </>
