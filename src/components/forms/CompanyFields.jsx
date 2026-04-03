@@ -9,8 +9,7 @@ export default function CompanyFields({
     errors = {}, 
     company, 
     register, 
-    traits: selectedTraits = [], 
-    skills: selectedSkills = [] }) {
+    traits: selectedTraits = [] }) {
 
     return (
         <>
@@ -94,7 +93,6 @@ export default function CompanyFields({
                 <legend className='formLabel'>
                     Vilka skills letar ni efter hos praktikanten?
                 </legend>
-                <Limit number={5}/>
                 <div className='badges'>
                     {skills.data.map(skill => (
                         <Badge
@@ -102,7 +100,6 @@ export default function CompanyFields({
                             key={skill}
                             fieldName="skills"
                             register={register}
-                            disabled={selectedSkills.length >= 5 && !selectedSkills.includes(skill)}
                         />
                     ))}
                 </div>
