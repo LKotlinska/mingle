@@ -4,6 +4,7 @@ import './CompanyFields.css'
 import Badge from './Badge'
 import Limit from './Limit'
 import InlineError from './InlineError'
+import EmploymentField from './EmploymentField'
 
 export default function CompanyFields({
     errors = {},
@@ -43,37 +44,12 @@ export default function CompanyFields({
 
             </div>
 
-            <fieldset className='formGroup'>
-                <legend className='formLabel'>
-                    Vilka roller söker ni?*
-                </legend>
-                <div className='checkboxGroup'>
-                    <input
-                        type="checkbox"
-                        id="webbutvecklare"
-                        className={errors.employment ? "errorBorder" : ""}
-                        value="webbutvecklare"
-                        {...register('employment', { required: true })}
-                    />
-                    <label htmlFor='webbutvecklare'>
-                        Webbutvecklare
-                    </label>
-                </div>
-
-                <div className='checkboxGroup'>
-                    <input
-                        type="checkbox"
-                        id="digitaldesigner"
-                        className={errors.employment ? "errorBorder" : ""}
-                        value="digitaldesigner"
-                        {...register('employment', { required: true })}
-                    />
-                    <label htmlFor='digitaldesigner'>
-                        Digital Designer
-                    </label>
-                </div>
-                { errors.employment && <InlineError error='Minst en roll måste väljas'/>}
-            </fieldset>
+            <EmploymentField
+                formLabel={"Vilka roller söker ni?"}
+                register={register}
+                errors={errors}
+                required={true}
+            />
 
             <fieldset className='formGroup'>
                 <legend className='formLabel'>
