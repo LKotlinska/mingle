@@ -6,7 +6,7 @@ import RegisterCompany from "../components/RegisterCompany";
 export default function RegistrationPage() {
   return (
     <>
-      <Link to="/company">← Hem</Link>
+      <Link to="/">← Hem</Link>
       <main className="registrationPage">
         <div className="registrationSection">
           <h1 className="formHeading">Registrera ditt företag</h1>
