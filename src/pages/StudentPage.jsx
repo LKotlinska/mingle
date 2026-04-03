@@ -1,26 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./StudentPage.css";
-import registerIcon from "../assets/images/registrera-icom.png";
+import BackLink from "../components/BackLink";
+import regIcon from "../assets/images/reg-icon.png";
 import matchIcon from "../assets/images/match-icon.png";
 import challengeIcon from "../assets/images/challange-icon.png";
 import companyListIcon from "../assets/images/Company-List-icon.png";
+import starsIcon from "../assets/images/stars.png";
+import snakeIcon from "../assets/images/snake42.png";
+import snakeBottomIcon from "../assets/images/snake41.png";
+import curlIcon from "../assets/images/curl41.png";
 
 export default function StudentPage() {
   return (
     <main className="studentPage">
-      <h1 className="title-pill">Välkommen, student</h1>
+      <BackLink to="/" />
+      <div className="student-decor">
+        <img className="student-decor-stars" src={starsIcon} alt="" />
+        <img className="student-decor-snake" src={snakeIcon} alt="" />
+      </div>
       <ul className="student-grid">
-        <li className="student-card">
-          <Link className="student-card-link" to="/registrering">
-            <img className="student-card-icon" src={registerIcon} alt="" />
-            <span>Registera ditt deltagande här</span>
-          </Link>
-        </li>
         <li className="student-card">
           <Link className="student-card-link" to="/match">
             <img className="student-card-icon" src={matchIcon} alt="" />
-            <span>Match</span>
+            <span>Matcha</span>
           </Link>
         </li>
         <li className="student-card">
@@ -35,9 +38,21 @@ export default function StudentPage() {
             <span>Företags lista</span>
           </Link>
         </li>
+        <li className="student-card">
+          <Link className="student-card-link" to="/registrering">
+            <img className="student-card-icon" src={regIcon} alt="" />
+            <span>Anmäl dig</span>
+          </Link>
+        </li>
       </ul>
-
-      <Link to="/">← Tillbaka till förstasidan</Link>
+      <div className="student-decor-bottom">
+        <img
+          className="student-decor-snake-bottom"
+          src={snakeBottomIcon}
+          alt=""
+        />
+        <img className="student-decor-curl" src={curlIcon} alt="" />
+      </div>
     </main>
   );
 }

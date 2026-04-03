@@ -1,0 +1,78 @@
+.landing-container {
+  background-image: url("../assets/images/bg.pic.png");
+  background-size: cover;
+  background-position: 100% center;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cloud-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.header-logos {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  margin-top: 60px;
+}
+
+.header-logos .logo {
+  height: 30px;
+  width: auto;
+}
+
+h2 {
+  position: relative;
+  z-index: 2;
+  font-size: 32px;
+  text-align: center;
+  color: var (--yrgo-blue);
+  margin-top: 260px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 2;
+  margin-bottom: 60px;
+  width: 100%;
+  max-width: 250px;
+}
+
+.btn {
+  padding: 16px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-red {
+  background-color: var(--yrgo-red);
+  color: white;
+}
+
+.btn-navy {
+  background-color: var(--yrgo-blue);
+  color: white;
+}
