@@ -15,7 +15,8 @@ import CompanyPage from "./pages/CompanyPage.jsx";
 import CompanyList from "./pages/CompanyList.jsx";
 import StudentList from "./pages/StudentList.jsx";
 import StudentPage from "./pages/StudentPage.jsx";
-import RegistrationCompany from "./components/RegistrationCompany.jsx";
+import RegistrationCompany from "./pages/RegistrationCompany.jsx";
+import RegistrationStudent from "./pages/RegistrationStudent.jsx";
 
 function AppContent() {
   const { pathname } = useLocation();
