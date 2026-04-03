@@ -5,11 +5,14 @@ import Badge from './Badge'
 import Limit from './Limit'
 import InlineError from './InlineError'
 
-export default function CompanyFields({ 
-    errors = {}, 
-    company, 
-    register, 
-    traits: selectedTraits = [] }) {
+export default function CompanyFields({
+    errors = {},
+    company,
+    register,
+    watch
+ }) {
+
+    const selectedTraits = watch('traits', []);
 
     return (
         <>

@@ -1,4 +1,3 @@
-
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -11,7 +10,6 @@ export default function RegisterCompany() {
     // - register: connects inputs to the form
     // - watch: reads the live value of a field
     const { handleSubmit, register, reset, watch, formState: { errors } } = useForm();
-
     const [ verified, setVerified ] = useState(false);
     const [ company, setCompany ] = useState(null);
     const [ error, setError ] = useState("");
@@ -19,8 +17,7 @@ export default function RegisterCompany() {
 
     // Watches the 'code' input live so verifyCompany can use its current value
     const code = watch('code', '');
-    const traits = watch('traits', []);
-    const skills = watch('skills', []);
+
 
     const onSubmit = async data => {
         const res = await fetch('/api/register', {
@@ -95,11 +92,10 @@ export default function RegisterCompany() {
                     <>
                         <CompanyFields
                             company={company}
-                            register={register} // Passed down so CompanyFields uses the same form instance
-                            traits={traits}
-                            skills={skills}
+                            register={register}
                             errors={errors}
-                        /> 
+                            watch={watch}
+                        />
                         { error && <InlineError error={error}/> }
                         <div className="formButtonContainer">
                             <Link to="/company">
