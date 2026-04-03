@@ -19,7 +19,7 @@ export default function Landing() {
       <h2>Upplev LIA-event som:</h2>
 
       <div className="buttons-container">
-        <Link to="/company" className="btn btn-red">
+        <Link to="/foretag" className="btn btn-red">
           Företag
         </Link>
         <Link to="/student" className="btn btn-navy">
