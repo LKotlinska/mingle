@@ -8,9 +8,3 @@
   border: 0.01em solid black;
   border-radius: 1em;
 }
-
-.formHeading {
-  font-size: 1.8em;
-  color: var(--yrgo-red);
-  margin: 0 0 0.6em 0;
-}

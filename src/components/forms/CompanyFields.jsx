@@ -5,12 +5,21 @@ import Badge from './Badge'
 import Limit from './Limit'
 import InlineError from './InlineError'
 
-export default function CompanyFields({ errors = {}, company, register, traits: selectedTraits = [], skills: selectedSkills = [] }) {
+export default function CompanyFields({ 
+    errors = {}, 
+    company, 
+    register, 
+    traits: selectedTraits = [], 
+    skills: selectedSkills = [] }) {
 
     return (
         <>
             <div className='formGroup'>
-                <label htmlFor="name" className='formLabel'>Företag*</label>
+                <label 
+                    htmlFor="name" 
+                    className='formLabel'>
+                    Företag*
+                </label>
                 <input
                     type="text"
                     name="name"
