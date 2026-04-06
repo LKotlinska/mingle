@@ -1,8 +1,8 @@
 .footer {
   margin-top: auto;
-  padding: 1rem;
+  padding: 0.8rem;
   text-align: center;
-  border-top: 1px solid var(--yrgo-red);
-  color: var(--yrgo-blue);
+  color: #fff;
   font-size: 0.9rem;
+  background: var(--yrgo-blue);
 }

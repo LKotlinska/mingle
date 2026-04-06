@@ -33,7 +33,7 @@ export default function StudentPage() {
           </Link>
         </li>
         <li className="student-card">
-          <Link className="student-card-link" to="/company-list">
+          <Link className="student-card-link" to="/foretag-list">
             <img className="student-card-icon" src={companyListIcon} alt="" />
             <span>Företags lista</span>
           </Link>

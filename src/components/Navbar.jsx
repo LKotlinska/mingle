@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Navabar.css";
 import navmenu from "../assets/images/navmenu.png";
-import x from "../assets/images/x.png";
+import x from "../assets/images/X.png";
+import yrgoLogo from "../assets/images/YRGO-logga.png";
+import navbarTitle from "../assets/images/navbar-title.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -15,6 +18,25 @@ export default function Navbar() {
   }, [isOpen]);
 
   const closeMenu = () => setIsOpen(false);
+
+  const studentLinks = [
+    { to: "/student", label: "Hem" },
+    { to: "/student/registrering", label: "Registrera dig" },
+    { to: "/foretag-list", label: "Företags lista" },
+    { to: "/match", label: "Matcha" },
+    { to: "/utmaningar", label: "Utmaning" },
+  ];
+
+  const companyLinks = [
+    { to: "/foretag", label: "Hem" },
+    { to: "/foretag/registrering", label: "Registrera företag" },
+    { to: "/student-list", label: "Kandidat lista" },
+  ];
+
+  const companyRoutes = ["/foretag", "/foretag/registrering", "/student-list"];
+
+  const isCompanyPage = companyRoutes.includes(location.pathname);
+  const currentLinks = isCompanyPage ? companyLinks : studentLinks;
 
   return (
     <nav className="navbar">
@@ -38,34 +60,28 @@ export default function Navbar() {
 
       <div className={`menu-overlay ${isOpen ? "open" : ""}`}>
         <div className="navbar__links">
-          <NavLink
-            to="/student"
-            onClick={closeMenu}
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            HEM
-          </NavLink>
-          <NavLink
-            to="/match"
-            onClick={closeMenu}
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            MATCH
-          </NavLink>
-          <NavLink
-            to="/utmaningar"
-            onClick={closeMenu}
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            UTMANINGAR
-          </NavLink>
-          <NavLink
-            to="/company"
-            onClick={closeMenu}
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            FÖRETAG
-          </NavLink>
+          {isOpen && (
+            <div className="navbar-title-section">
+              <h2 className="navbar-title-text">
+                {isCompanyPage ? "FÖRETAG" : "KANDIDAT"}
+              </h2>
+              <img 
+                src={navbarTitle} 
+                alt="Navbar title" 
+                className="navbar-title-image"
+              />
+            </div>
+          )}
+          {currentLinks.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              onClick={closeMenu}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              {link.label}
+            </NavLink>
+          ))}
         </div>
       </div>
     </nav>
