@@ -67,10 +67,13 @@
 }
 
 .student-list-page .student-list-snake {
-  display: block;
-  margin: 6px 0 12px 20px;
+  position: fixed;
+  left: 20px;
+  top: 160px;
   width: 164px;
   height: 10px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .student-list-page .student-grid {

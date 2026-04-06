@@ -23,15 +23,17 @@ export default function Landing() {
         className="landing-main-image"
       />
 
-      <h2>Upplev LIA-event som:</h2>
+      <div className="landing-content">
+        <h2>Upplev LIA-event som:</h2>
 
-      <div className="buttons-container">
-        <Link to="/foretag" className="btn btn-red">
-          Företag
-        </Link>
-        <Link to="/student" className="btn btn-navy">
-          Student
-        </Link>
+        <div className="buttons-container">
+          <Link to="/foretag" className="btn btn-red">
+            Företag
+          </Link>
+          <Link to="/student" className="btn btn-navy">
+            Student
+          </Link>
+        </div>
       </div>
     </div>
   );
