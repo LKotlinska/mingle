@@ -28,12 +28,34 @@
   gap: 20px;
   align-items: center;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
 .header-logos .logo {
   width: auto;
   height: 30px;
+}
+
+.header-logos .logo--x {
+  animation: x-landing-in 6s cubic-bezier(0.14, 1, 0.28, 1) infinite;
+}
+
+@keyframes x-landing-in {
+  from {
+    opacity: 0;
+    transform: translateY(-165vh) rotate(-540deg) scale(0.74);
+  }
+  72% {
+    opacity: 1;
+    transform: translateY(12px) rotate(-14deg) scale(1.015);
+  }
+  80% {
+    transform: translateY(-3px) rotate(4deg) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
 }
 
 .landing-main-image {
@@ -48,7 +70,7 @@
 
 .landing-content {
   position: absolute;
-  top: 75%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -60,10 +82,11 @@
 }
 
 .landing-content h1 {
-  margin: 0 0 12px;
+  margin: 0 0 30px;
   font-size: 24px;
   text-align: center;
   color: var(--yrgo-blue);
+  font-weight: 700;
 }
 
 .buttons-container {
@@ -81,7 +104,7 @@
   text-align: center;
   text-decoration: none;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
   transition: all 0.3s ease;
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Navabar.css";
 import navmenu from "../assets/images/navmenu.png";
-import x from "../assets/images/X.png";
+import xIcon from "../assets/images/X.png";
 import yrgoLogo from "../assets/images/YRGO-logga.png";
 import navbarTitle from "../assets/images/navbar-title.png";
 
@@ -52,7 +52,7 @@ export default function Navbar() {
         type="button"
       >
         <img
-          src={isOpen ? x : navmenu}
+          src={isOpen ? xIcon : navmenu}
           alt={isOpen ? "Stäng" : "Meny"}
           className="hamburger-icon"
         />
@@ -65,9 +65,9 @@ export default function Navbar() {
               <h2 className="navbar-title-text">
                 {isCompanyPage ? "FÖRETAG" : "KANDIDAT"}
               </h2>
-              <img 
-                src={navbarTitle} 
-                alt="Navbar title" 
+              <img
+                src={navbarTitle}
+                alt="Navbar title"
                 className="navbar-title-image"
               />
             </div>

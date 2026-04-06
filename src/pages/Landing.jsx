@@ -13,7 +13,7 @@ export default function Landing() {
 
       <div className="header-logos">
         <img src={yrgoIcon} alt="YRGO" className="logo" />
-        <img src={xIcon} alt="x" className="logo" />
+        <img src={xIcon} alt="x" className="logo logo--x" />
         <img src={liaIcon} alt="LIA" className="logo" />
       </div>
 
