@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navabar.css";
+import navmenu from "../assets/images/navmenu.png";
+import x from "../assets/images/x.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,9 +25,11 @@ export default function Navbar() {
         aria-expanded={isOpen}
         type="button"
       >
-        <span />
-        <span />
-        <span />
+        <img
+          src={isOpen ? x : navmenu}
+          alt={isOpen ? "Stäng" : "Meny"}
+          className="hamburger-icon"
+        />
       </button>
 
       <div className={`menu-overlay ${isOpen ? "open" : ""}`}>
