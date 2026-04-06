@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 :root {
   --yrgo-red: #e51536;
   --yrgo-blue: #001a52;
@@ -10,7 +12,12 @@ body,
 }
 
 body {
-  margin: 10px;
+  margin: 0;
+  background-image: url("bg-pic.png");
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 #root {
@@ -27,4 +34,9 @@ ul,
 ol {
   list-style: none;
   padding-left: 0;
+}
+
+h1 {
+  color: var(--yrgo-blue);
+  font-size: 20px;
 }

@@ -1,0 +1,16 @@
+.alert {
+  color: green;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 500;
+  padding: 2em;
+  background-color: rgb(225, 255, 225);
+  position: fixed;
+  top: 3em;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1em;
+  border: 0.01em solid green;
+}

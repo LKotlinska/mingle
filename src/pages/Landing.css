@@ -1,0 +1,97 @@
+.landing-container {
+  position: relative;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("../assets/images/bg.pic.png");
+  background-size: cover;
+  background-position: 100% center;
+  background-attachment: fixed;
+}
+
+.cloud-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-color: rgba(255, 255, 255, 0.22);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.header-logos {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.header-logos .logo {
+  width: auto;
+  height: 30px;
+}
+
+.landing-main-image {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+  margin-top: 40px;
+}
+
+.landing-content {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-content h1 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  text-align: center;
+  color: var(--yrgo-blue);
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.btn {
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-red {
+  background-color: var(--yrgo-red);
+  color: white;
+}
+
+.btn-navy {
+  background-color: var(--yrgo-blue);
+  color: white;
+}

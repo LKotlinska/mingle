@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navabar.css";
 import navmenu from "../assets/images/navmenu.png";
 import x from "../assets/images/x.png";
@@ -18,6 +18,10 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
+      <Link to="/" aria-label="Till startsidan">
+        <img className="navbar__logo" src={yrgoLogo} alt="YRGO" />
+      </Link>
+
       <button
         className={`hamburger ${isOpen ? "is-open" : ""}`}
         onClick={() => setIsOpen((prev) => !prev)}
