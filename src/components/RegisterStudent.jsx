@@ -193,7 +193,7 @@ export default function RegisterStudent() {
         </div>
 
         <div>
-          <label htmlFor="name">Kandidat</label>
+          <label htmlFor="name">Kandidat *</label>
           <input
             className="formInput"
             id="name"
@@ -207,7 +207,7 @@ export default function RegisterStudent() {
         </div>
 
         <div>
-          <label htmlFor="education">Utbildning</label>
+          <label htmlFor="education">Utbildning *</label>
           <select
             className="formInput"
             id="education"
