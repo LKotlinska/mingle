@@ -1,14 +1,29 @@
 .registrationPage {
-  margin: 0;
-  padding: 12px 10px 28px;
 }
 
 .regForm {
+  position: relative;
   max-width: 430px;
-  margin: 20px;
+  margin: 40px;
   padding: 25px;
   border-radius: 14px;
-  border: 1px solid black;
+  border: 1px solid #d9ddee;
+}
+
+.regBow {
+  position: absolute;
+  top: -12px;
+  height: 25px;
+  width: auto;
+  pointer-events: none;
+}
+
+.regBowLeft {
+  left: -8px;
+}
+
+.regBowRight {
+  right: -8px;
 }
 
 .title {
@@ -37,11 +52,12 @@
   box-sizing: border-box;
   appearance: none;
   -webkit-appearance: none;
+  -moz-appearance: none;
   display: block;
   width: 100%;
-  height: 44px;
-  border-radius: 22px;
-  border: 1px solid #d7daea;
+  height: 2.8rem;
+  border-radius: 0.6rem;
+  border: 1px solid #d9ddee;
   background: #fff;
   color: #1b1e2f;
   margin: 0;
@@ -54,11 +70,37 @@
     box-shadow 0.2s ease;
 }
 
+.formInput::-ms-expand {
+  display: none;
+}
+
+.formInput[type="text"],
+.formInput[type="url"],
+.formInput[type="file"] {
+  padding-right: 12px;
+}
+
+.formInput[type="select"],
+select.formInput {
+  padding-right: 32px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b1e2f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  height: 3.5rem;
+}
+
 .registerStudentForm input::placeholder {
   color: #98a0b3;
 }
 
 .registerStudentForm input:focus {
+  outline: none;
+  border-color: var(--yrgo-red);
+  box-shadow: 0 0 0 4px rgba(204, 38, 72, 0.12);
+}
+
+.registerStudentForm select:focus {
   outline: none;
   border-color: var(--yrgo-red);
   box-shadow: 0 0 0 4px rgba(204, 38, 72, 0.12);

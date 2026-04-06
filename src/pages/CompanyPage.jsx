@@ -27,7 +27,7 @@ export default function CompanyPage() {
           </Link>
         </li>
         <li className="student-card">
-          <Link className="student-card-link" to="/foretag-list">
+          <Link className="student-card-link" to="/student-list">
             <img className="student-card-icon" src={companyListIcon} alt="" />
             <span>Studentlista</span>
           </Link>

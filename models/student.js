@@ -6,6 +6,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  education: {
+    type: String,
+    default: "",
+  },
   links: {
     type: [String],
     default: [],
@@ -23,6 +27,9 @@ const studentSchema = new mongoose.Schema({
 function validateStudent(student) {
   const schema = Joi.object({
     name: Joi.string().trim().min(1).max(50).required(),
+    education: Joi.string()
+      .valid("Digital design", "Webbutvecklare")
+      .required(),
     links: Joi.array().items(
       Joi.string()
         .trim()

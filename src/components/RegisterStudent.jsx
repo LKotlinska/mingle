@@ -5,12 +5,29 @@ import Alert from "./Alert";
 export default function RegisterStudent() {
   const [formData, setFormData] = useState({
     name: "",
+    education: "",
     links: [""],
     profileImage: studentHat,
   });
 
   const [imagePreview, setImagePreview] = useState(studentHat);
   const [alert, setAlert] = useState("");
+
+  function normalizeLink(rawLink) {
+    const trimmed = rawLink.trim();
+    if (!trimmed) return "";
+
+    return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+  }
+
+  function isValidHttpUrl(link) {
+    try {
+      const url = new URL(link);
+      return url.protocol === "http:" || url.protocol === "https:";
+    } catch {
+      return false;
+    }
+  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -68,8 +85,17 @@ export default function RegisterStudent() {
     event.preventDefault();
 
     const cleanedLinks = formData.links
-      .map((link) => link.trim())
+      .map((link) => normalizeLink(link))
       .filter(Boolean);
+
+    const invalidLink = cleanedLinks.find((link) => !isValidHttpUrl(link));
+    if (invalidLink) {
+      setAlert("Ogiltig länk. Ange t.ex. https://min-sida.se");
+      setTimeout(() => {
+        setAlert("");
+      }, 3000);
+      return;
+    }
 
     try {
       const payload = {
@@ -84,15 +110,22 @@ export default function RegisterStudent() {
       });
 
       if (!res.ok) {
-        let errorMessage = "Det gick inte att spara registreringen";
+        let errorMessage = `Det gick inte att spara registreringen (status ${res.status})`;
+        const contentType = res.headers.get("content-type") || "";
 
-        try {
+        if (contentType.includes("application/json")) {
           const errorData = await res.json();
           errorMessage = errorData.error || errorMessage;
-        } catch {
-          if (res.status === 502) {
+        } else {
+          const errorText = await res.text();
+          if (res.status === 413) {
+            errorMessage =
+              "Bilden är för stor att skicka. Välj en mindre bild eller komprimera den.";
+          } else if (res.status === 502 || res.status === 504) {
             errorMessage =
               "Backend svarar inte. Kontrollera att servern körs och att DB_URI i .env är korrekt.";
+          } else if (errorText?.trim()) {
+            errorMessage = errorText;
           }
         }
 
@@ -104,6 +137,7 @@ export default function RegisterStudent() {
 
       setFormData({
         name: "",
+        education: "",
         links: [""],
         profileImage: studentHat,
       });
@@ -173,6 +207,22 @@ export default function RegisterStudent() {
         </div>
 
         <div>
+          <label htmlFor="education">Utbildning</label>
+          <select
+            className="formInput"
+            id="education"
+            name="education"
+            value={formData.education}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Välj utbildning</option>
+            <option value="Digital design">Digital design</option>
+            <option value="Webbutvecklare">Webbutvecklare</option>
+          </select>
+        </div>
+
+        <div>
           <label htmlFor="link-0">Link</label>
           {formData.links.map((link, index) => (
             <input
@@ -185,7 +235,7 @@ export default function RegisterStudent() {
               autoCorrect="off"
               value={link}
               onChange={(event) => handleLinkChange(index, event.target.value)}
-              placeholder="Ex: portfolio, linkedIn"
+              placeholder="Ex: min-sida.se eller https://linkedin.com/in/..."
             />
           ))}
           <button

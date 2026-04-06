@@ -3,6 +3,15 @@ import Student, { validateStudent } from "../models/student.js";
 
 const router = express.Router();
 
+router.get("/", async (req, res) => {
+  try {
+    const students = await Student.find();
+    return res.status(200).json(students);
+  } catch (err) {
+    return res.status(500).json({ error: "Kunde inte hämta studenter" });
+  }
+});
+
 router.post("/", async (req, res) => {
   const { error } = validateStudent(req.body);
 
