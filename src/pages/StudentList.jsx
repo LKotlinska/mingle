@@ -69,7 +69,7 @@ export default function StudentList() {
       <BackLink to="/foretag" />
 
       <div className="student-list-header">
-        <h1>Studentlista</h1>
+        <h1>Lista på kandidater</h1>
         <div className="student-search-wrap">
           <input
             className="student-search"
