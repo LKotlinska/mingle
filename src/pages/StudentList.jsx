@@ -11,6 +11,17 @@ export default function StudentList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  function capitalizeNameWords(value = "") {
+    const trimmed = value.trim();
+    if (!trimmed) return "";
+
+    return trimmed
+      .toLowerCase()
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+
   useEffect(() => {
     const fetchStudents = async () => {
       try {
@@ -75,42 +86,46 @@ export default function StudentList() {
       <img src={snake43} alt="" className="student-list-snake" />
 
       <div className="student-grid">
-        {filteredStudents.map((student) => (
-          <div key={student._id} className="student-card">
-            <div className="student-card-blob" />
-            <div className="student-card-content">
-              <div className="student-card-text">
-                <h3 className="student-name">{student.name}</h3>
-                {student.education && (
-                  <p className="student-education">{student.education}</p>
-                )}
+        {filteredStudents.map((student) => {
+          const displayName = capitalizeNameWords(student.name || "");
 
-                {!!student.links?.length && (
-                  <div className="student-links">
-                    {student.links.map((link, index) => (
-                      <a
-                        key={index}
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Länk {index + 1}
-                      </a>
-                    ))}
-                  </div>
-                )}
+          return (
+            <div key={student._id} className="student-card">
+              <div className="student-card-blob" />
+              <div className="student-card-content">
+                <div className="student-card-text">
+                  <h3 className="student-name">{displayName}</h3>
+                  {student.education && (
+                    <p className="student-education">{student.education}</p>
+                  )}
+
+                  {!!student.links?.length && (
+                    <div className="student-links">
+                      {student.links.map((link, index) => (
+                        <a
+                          key={index}
+                          href={link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Länk {index + 1}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="student-image-wrap">
+                <img
+                  className="student-image"
+                  src={student.profileImage}
+                  alt={displayName}
+                />
               </div>
             </div>
-
-            <div className="student-image-wrap">
-              <img
-                className="student-image"
-                src={student.profileImage}
-                alt={student.name}
-              />
-            </div>
-          </div>
-        ))}
+          );
+        })}
         {filteredStudents.length === 0 && (
           <p>Inga kandidater matchar din sökning.</p>
         )}
