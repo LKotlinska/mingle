@@ -8,8 +8,10 @@ export default function RegistrationStudent() {
   return (
     <main className="registrationPage">
       <BackLink to="/student" />
-      <h1>Registrera ditt deltagande</h1>
-      <RegisterStudent />
+      <section className="regForm">
+        <h1 className="title">Registrera dig</h1>
+        <RegisterStudent />
+      </section>
     </main>
   );
 }
