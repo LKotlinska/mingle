@@ -24,7 +24,7 @@ export default function Landing() {
       />
 
       <div className="landing-content">
-        <h2>Upplev LIA-event som:</h2>
+        <h1>Upplev LIA-event som:</h1>
 
         <div className="buttons-container">
           <Link to="/foretag" className="btn btn-red">
