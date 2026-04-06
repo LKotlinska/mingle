@@ -33,7 +33,7 @@ function AppContent() {
         <Route path="/utmaningar" element={<ChallengePage />} />
         <Route path="/foretag" element={<CompanyPage />} />
         <Route path="/foretag-list" element={<CompanyList />} />
-        <Route path="/foretag/registration" element={<RegistrationCompany />} />
+        <Route path="/foretag/registrering" element={<RegistrationCompany />} />
       </Routes>
       <Footer />
     </>

@@ -21,13 +21,13 @@ export default function CompanyPage() {
 
       <ul className="student-grid">
         <li className="student-card">
-          <Link className="student-card-link" to="/register">
+          <Link className="student-card-link" to="/foretag/registrering">
             <img className="student-card-icon" src={regIcon} alt="" />
             <span>Registrera ditt företag</span>
           </Link>
         </li>
         <li className="student-card">
-          <Link className="student-card-link" to="/student-list">
+          <Link className="student-card-link" to="/foretag-list">
             <img className="student-card-icon" src={companyListIcon} alt="" />
             <span>Studentlista</span>
           </Link>
