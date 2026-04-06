@@ -72,11 +72,12 @@
   align-self: center;
   margin-top: 20px;
   width: auto;
-  padding: 10px 16px;
+  padding: 16px 40px;
   background: var(--yrgo-red);
   color: white;
   border: none;
   border-radius: 999px;
+  font-size: 20px;
 }
 
 .challenge-home-link {

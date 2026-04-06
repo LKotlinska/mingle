@@ -5,18 +5,16 @@
 
 .regForm {
   max-width: 430px;
-  margin: 10px auto;
-  padding: 16px;
+  margin: 20px;
+  padding: 25px;
   border-radius: 14px;
-  border: 1px solid #e7e8f2;
-  background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
-  box-shadow: 0 8px 24px rgba(20, 24, 40, 0.08);
+  border: 1px solid black;
 }
 
 .title {
   color: var(--yrgo-red);
   text-align: center;
-  margin: 2px 0 14px;
+  margin: 2px 0 25px;
   font-size: 1.55rem;
 }
 
