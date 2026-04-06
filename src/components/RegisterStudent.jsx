@@ -235,7 +235,7 @@ export default function RegisterStudent() {
               autoCorrect="off"
               value={link}
               onChange={(event) => handleLinkChange(index, event.target.value)}
-              placeholder="Ex: min-sida.se eller https://linkedin.com/in/..."
+              placeholder="Ex: min-portfolio / https://linkedin"
             />
           ))}
           <button
