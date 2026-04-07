@@ -165,7 +165,7 @@
 .company-list-page .company-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .company-list-page .company-list-curl-left {
