@@ -4,6 +4,7 @@ import "./Landing.css";
 import yrgoIcon from "../assets/images/Y.png";
 import xIcon from "../assets/images/X.png";
 import liaIcon from "../assets/images/LIA.png";
+import landpagePic from "../assets/images/landpagePic.png";
 
 export default function Landing() {
   return (
@@ -16,15 +17,23 @@ export default function Landing() {
         <img src={liaIcon} alt="LIA" className="logo" />
       </div>
 
-      <h2>Upplev LIA-event som:</h2>
+      <img
+        src={landpagePic}
+        alt="Landningsbild"
+        className="landing-main-image"
+      />
 
-      <div className="buttons-container">
-        <Link to="/foretag" className="btn btn-red">
-          Företag
-        </Link>
-        <Link to="/student" className="btn btn-navy">
-          Student
-        </Link>
+      <div className="landing-content">
+        <h1>Upplev LIA-event som:</h1>
+
+        <div className="buttons-container">
+          <Link to="/foretag" className="btn btn-red">
+            Företag
+          </Link>
+          <Link to="/student" className="btn btn-navy">
+            Student
+          </Link>
+        </div>
       </div>
     </div>
   );
