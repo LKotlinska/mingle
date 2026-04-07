@@ -19,74 +19,84 @@ export default function RegisterCompany() {
     const code = watch('code', '');
 
 
-    const onSubmit = async data => {
-        const res = await fetch('/api/register', {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        if (!res.ok) {
-            const { error } = await res.json()
-            setError(error)
-            return
-        }
-        setError("")
-        setAlert("Uppdaterad")
-        setTimeout(() => setAlert(""), 3000)
-        setVerified(false)
-        setCompany(null)
+  const onSubmit = async (data) => {
+    const res = await fetch("/api/company", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const { error } = await res.json();
+      setError(error);
+      return;
+    }
+    setError("");
+    setAlert("Uppdaterad");
+    setTimeout(() => setAlert(""), 3000);
+    setVerified(false);
+    setCompany(null);
+  };
+
+  const verifyCompany = async () => {
+    setError("");
+    const res = await fetch(`/api/company/${code}`);
+    if (!res.ok) {
+      const { error } = await res.json();
+      setCompany(null);
+      setVerified(false);
+      setError(error);
+      return;
     }
 
-    const verifyCompany = async () => {
-        setError("")
-        const res = await fetch(`/api/register/${code}`);
-        if (!res.ok) {
-            const { error } = await res.json()
-            setCompany(null)
-            setVerified(false)
-            setError(error)
-            return;
-        }
+    const company = await res.json();
+    setCompany(company);
+    setVerified(true);
+    // Populates the form with the company's existing data.
+    // RHF uses these values to pre-check the matching badge checkboxes
+    // against the traits/skills arrays provided here.
+    reset({
+      code,
+      name: company.name,
+      employment: company.employment,
+      traits: company.traits,
+      skills: company.skills,
+    });
+  };
 
-        const company = await res.json();
-        setCompany(company)
-        setVerified(true)
-        // Populates the form with the company's existing data.
-        // RHF uses these values to pre-check the matching badge checkboxes
-        // against the traits/skills arrays provided here.
-        reset({ code, name: company.name, employment: company.employment, traits: company.traits, skills: company.skills })
-    }
-
-    return (
-        <section>
-            { alert && <Alert alert={alert}/>}
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='formGroup'>
-                    <label htmlFor="code" className='formLabel'>
-                        Ange din företagskod*
-                    </label>
-                    <div className='inputGrid'>
-                        <input
-                            type="text"
-                            name="code"
-                            id="code"
-                            className={(error || errors.code) ? "errorBorder" : ""}
-                            disabled={company}
-                            placeholder='t.ex. c0de12'
-                            minLength={1}
-                            maxLength={10}
-                            {...register('code', {
-                            required: 'Företagskod krävs',
-                            pattern: {
-                                value: /^[a-zA-Z0-9]+$/,
-                                message: 'Koden får bara innehålla bokstäver och siffror'
-                            }
-                        })}
-                        />
-                        <button type="button" disabled={company} onClick={verifyCompany}>Verifiera</button>
-                    </div>
-                    { (error || errors.code) && <InlineError error={error || errors.code?.message}/>}
-                </div>
+  return (
+    <section>
+      {alert && <Alert alert={alert} />}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="formGroup">
+          <label htmlFor="code" className="formLabel">
+            Ange din företagskod*
+          </label>
+          <div className="inputGrid">
+            <input
+              type="text"
+              name="code"
+              id="code"
+              className={error || errors.code ? "errorBorder" : ""}
+              disabled={company}
+              placeholder="t.ex. c0de12"
+              minLength={1}
+              maxLength={10}
+              {...register("code", {
+                required: "Företagskod krävs",
+                pattern: {
+                  value: /^[a-zA-Z0-9]+$/,
+                  message: "Koden får bara innehålla bokstäver och siffror",
+                },
+              })}
+            />
+            <button type="button" disabled={company} onClick={verifyCompany}>
+              Verifiera
+            </button>
+          </div>
+          {(error || errors.code) && (
+            <InlineError error={error || errors.code?.message} />
+          )}
+        </div>
 
                 { verified &&
                     <>

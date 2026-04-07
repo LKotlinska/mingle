@@ -3,6 +3,15 @@ import Company, { validateCompany } from "../models/company.js";
 
 const router = express.Router();
 
+router.get("/", async (req, res) => {
+  try {
+    const companies = await Company.find();
+    return res.status(200).json(companies);
+  } catch (err) {
+    return res.status(500).json({ error: "Kunde inte hämta företag" });
+  }
+});
+
 router.post("/", async (req, res) => {
   const { code, ...fields } = req.body;
   const company = await Company.findOne({ code: code });
