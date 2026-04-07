@@ -1,15 +1,15 @@
-.student-list-page {
+.company-list-page {
   position: relative;
   isolation: isolate;
   padding-bottom: 24px;
 }
 
-.student-list-page > * {
+.company-list-page > * {
   position: relative;
   z-index: 1;
 }
 
-.student-list-page .student-list-header {
+.company-list-page .company-list-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,27 +17,25 @@
   padding: 0 20px;
 }
 
-.student-list-page h1 {
+.company-list-page h1 {
   margin: 0;
   font-size: 20px;
   color: var(--yrgo-blue);
   text-align: left;
 }
 
-.student-list-page .student-card-text,
-.student-list-page .student-name,
-.student-list-page .student-education,
-.student-list-page .student-links {
+.company-list-page .company-card-text,
+.company-list-page .company-name {
   text-align: left;
 }
 
-.student-list-page .student-search-wrap {
+.company-list-page .company-search-wrap {
   position: relative;
   width: min(100%, 200px);
   min-width: 0;
 }
 
-.student-list-page .student-search {
+.company-list-page .company-search {
   box-sizing: border-box;
   width: 100%;
   height: 2.2rem;
@@ -48,15 +46,15 @@
   text-align: right;
 }
 
-.student-list-page .student-search:focus {
+.company-list-page .company-search:focus {
   outline: none;
 }
 
-.student-list-page .student-search::placeholder {
+.company-list-page .company-search::placeholder {
   text-decoration: underline;
 }
 
-.student-list-page .student-search-icon {
+.company-list-page .company-search-icon {
   position: absolute;
   right: 2px;
   bottom: 8px;
@@ -66,14 +64,14 @@
   pointer-events: none;
 }
 
-.student-list-page .student-list-snake {
+.company-list-page .company-list-snake {
   display: block;
   margin: 6px 0 12px 20px;
   width: 164px;
   height: 10px;
 }
 
-.student-list-page .student-grid {
+.company-list-page .company-grid {
   list-style: none;
   margin: 30px 20px 20px;
   padding: 0;
@@ -82,24 +80,24 @@
   gap: 14px;
 }
 
-.student-list-page .student-card {
+.company-list-page .company-card {
   position: relative;
   overflow: hidden;
-  min-height: 100px;
+  min-height: 140px;
   border: 1px solid #111;
   border-radius: 20px;
   background: #f3f3f3;
 }
 
 /* Blå bakgrund + mjuk båge */
-.student-list-page .student-card-blob {
+.company-list-page .company-card-blob {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
 }
 
-.student-list-page .student-card-blob::before {
+.company-list-page .company-card-blob::before {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
@@ -110,7 +108,7 @@
   border-bottom-left-radius: 20px;
 }
 
-.student-list-page .student-card-blob::after {
+.company-list-page .company-card-blob::after {
   content: "";
   position: absolute;
   top: -8%;
@@ -121,16 +119,16 @@
   border-radius: 50%;
 }
 
-.student-list-page .student-card-content {
+.company-list-page .company-card-content {
   position: relative;
   z-index: 2;
-  min-height: 130px;
+  min-height: 100px;
   padding: 24px 135px 24px 30px;
   display: flex;
   align-items: flex-start;
 }
 
-.student-list-page .student-card-text {
+.company-list-page .company-card-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -141,7 +139,7 @@
   color: #fff;
 }
 
-.student-list-page .student-name {
+.company-list-page .company-name {
   margin: 0;
   font-size: 1.3rem;
   line-height: 1.05;
@@ -150,30 +148,7 @@
   overflow-wrap: anywhere;
 }
 
-.student-list-page .student-education {
-  margin: 0;
-  padding-top: 6px;
-  font-size: 1rem;
-  line-height: 1.2;
-  font-weight: 400;
-}
-
-.student-list-page .student-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0;
-}
-
-.student-list-page .student-links a {
-  color: #fff;
-  font-size: 0.9rem;
-  line-height: 1.2;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.student-list-page .student-image-wrap {
+.company-list-page .company-image-wrap {
   position: absolute;
   right: 16px;
   top: 50%;
@@ -187,13 +162,13 @@
   background: #ece9dc;
 }
 
-.student-list-page .student-image {
+.company-list-page .company-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.student-list-page .student-list-curl-left {
+.company-list-page .company-list-curl-left {
   position: fixed;
   left: -28px;
   top: 49%;
