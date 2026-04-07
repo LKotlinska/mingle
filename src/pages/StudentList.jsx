@@ -22,6 +22,15 @@ export default function StudentList() {
       .join(" ");
   }
 
+  function getDomainName(url) {
+    try {
+      const urlObj = new URL(url);
+      return urlObj.hostname.replace("www.", "");
+    } catch {
+      return url;
+    }
+  }
+
   useEffect(() => {
     const fetchStudents = async () => {
       try {
@@ -108,7 +117,7 @@ export default function StudentList() {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          Länk {index + 1}
+                          {getDomainName(link)}
                         </a>
                       ))}
                     </div>
