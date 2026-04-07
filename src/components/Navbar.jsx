@@ -25,6 +25,7 @@ export default function Navbar() {
     { to: "/foretag-list", label: "Företags lista" },
     { to: "/match", label: "Matcha" },
     { to: "/utmaningar", label: "Utmaning" },
+    { to: "/student-list", label: "Studentlista" },
   ];
 
   const companyLinks = [
