@@ -4,6 +4,7 @@ import Company from "../models/company.js";
 const router = express.Router();
 
 const matchRouter = router.post("/", async (req, res) => {
+  try {
   const employment = [].concat(req.body.employment ?? []);
   const traits = [].concat(req.body.traits ?? []);
   const skills = [].concat(req.body.skills ?? []);
@@ -17,12 +18,16 @@ const matchRouter = router.post("/", async (req, res) => {
     )
     .map((company) => {
       let matches = 0;
-      company.traits.forEach((trait) => {
-        if (traits.includes(trait)) matches++;
-      });
-      company.skills.forEach((skill) => {
-        if (skills.includes(skill)) matches++;
-      });
+      if (traits.length > 0) {
+        (company.traits ?? []).forEach((trait) => {
+          if (traits.includes(trait)) matches++;
+        });
+      }
+      if (skills.length > 0) {
+        (company.skills ?? []).forEach((skill) => {
+          if (skills.includes(skill)) matches++;
+        });
+      }
       return { company, matches };
     })
     .sort((a, b) => b.matches - a.matches)
@@ -38,6 +43,10 @@ const matchRouter = router.post("/", async (req, res) => {
   }
 
   res.json(matchedCompanies);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 export default matchRouter;
