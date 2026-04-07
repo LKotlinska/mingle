@@ -8,6 +8,7 @@ const matchRouter = router.post("/", async (req, res) => {
   console.log(employment);
   const companies = await Company.find();
 
+  // Filter by employment type, count trait/skill matches, return top 4 sorted by best match
   const matchedCompanies = companies
     .filter((company) =>
       company.employment.some((prof) => employment.includes(prof)),
@@ -22,7 +23,17 @@ const matchRouter = router.post("/", async (req, res) => {
       });
       return { company, matches };
     })
-    .sort((a, b) => b.matches - a.matches);
+    .sort((a, b) => b.matches - a.matches)
+    .slice(0, 4);
+
+  // If fewer than 4 matches, pad with random companies to always return 4
+  if (matchedCompanies.length < 4) {
+    companies
+      .filter((c) => !matchedCompanies.some((m) => m.company._id.equals(c._id)))
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 4 - matchedCompanies.length)
+      .forEach((c) => matchedCompanies.push({ company: c, matches: 0 }));
+  }
 
   res.json(matchedCompanies);
 });
