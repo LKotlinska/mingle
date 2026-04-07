@@ -43,7 +43,7 @@ export default function ChallengePage() {
         type="button"
         onClick={showThreeChallenges}
       >
-        {selectedChallenges.length === 0 ? "Utmaningar" : "Nya utmaningar"}
+        {selectedChallenges.length === 0 ? "Utmaningar" : "Nya utmaningar ↻"}
       </button>
     </main>
   );
