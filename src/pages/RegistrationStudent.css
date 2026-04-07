@@ -1,3 +1,197 @@
 .registrationPage {
+}
+
+.regForm {
+  position: relative;
+  max-width: 430px;
+  margin: 40px;
+  padding: 25px;
+  border-radius: 14px;
+  border: 1px solid #000;
+}
+
+.regBow {
+  position: absolute;
+  top: -12px;
+  height: 25px;
+  width: auto;
+  pointer-events: none;
+}
+
+.regBowLeft {
+  left: -8px;
+}
+
+.regBowRight {
+  right: -8px;
+}
+
+.title {
+  color: var(--yrgo-red);
+  text-align: center;
+  margin: 2px 0 25px;
+  font-size: 1.55rem;
+}
+
+.registerStudentForm {
+  display: grid;
+  gap: 24px;
+}
+
+.registerStudentForm > div {
+  display: grid;
+  gap: 8px;
+}
+
+.registerStudentForm label {
+  font-weight: 700;
+  color: #23263a;
+}
+
+.formInput {
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  width: 100%;
+  height: 2.8rem;
+  border-radius: 0.6rem;
+  border: 1px solid #d9ddee;
+  background: #fff;
+  color: #1b1e2f;
   margin: 0;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  line-height: 1.2;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.formInput::-ms-expand {
+  display: none;
+}
+
+.formInput[type="text"],
+.formInput[type="url"],
+.formInput[type="file"] {
+  padding-right: 12px;
+}
+
+.formInput[type="select"],
+select.formInput {
+  padding-right: 32px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b1e2f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  height: 3.5rem;
+}
+
+.registerStudentForm input::placeholder {
+  color: #98a0b3;
+}
+
+.registerStudentForm input:focus {
+  outline: none;
+  border-color: var(--yrgo-red);
+  box-shadow: 0 0 0 4px rgba(204, 38, 72, 0.12);
+}
+
+.registerStudentForm select:focus {
+  outline: none;
+  border-color: var(--yrgo-red);
+  box-shadow: 0 0 0 4px rgba(204, 38, 72, 0.12);
+}
+
+.profileImagePreviewWrapper {
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.profileImagePreview {
+  width: 136px;
+  height: 136px;
+  border-radius: 14px;
+  object-fit: cover;
+  margin-bottom: 6px;
+  display: inline-block;
+  border: 3px solid #fff;
+  box-shadow: 0 8px 20px rgba(20, 24, 40, 0.15);
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.profileImageActions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.imageActionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  background: #f5f6fb;
+  border: 1px solid #d9ddee;
+  color: #30364f;
+  border-radius: 10px;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.imageActionButton:hover {
+  background: #eceff9;
+  border-color: #c8cee5;
+}
+
+.linkInput {
+  margin-bottom: 0;
+}
+
+.addLinkButton {
+  width: fit-content;
+  min-width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--yrgo-red);
+  background: #fff;
+  color: var(--yrgo-red);
+  font-size: 1.15rem;
+  line-height: 1;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.registerStudentForm > button[type="submit"] {
+  margin-top: 4px;
+  width: fit-content;
+  justify-self: start;
+  border: none;
+  border-radius: 22px;
+  min-height: 46px;
+  padding: 12px 16px;
+  background: var(--yrgo-red);
+  color: #fff;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    filter 0.2s ease,
+    transform 0.12s ease;
 }

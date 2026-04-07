@@ -1,7 +1,206 @@
-main {
-  
+.student-list-page {
+  position: relative;
+  isolation: isolate;
+  padding-bottom: 24px;
 }
 
-h1 {
-  margin: 0 auto;
+.student-list-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.student-list-page .student-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 20px;
+}
+
+.student-list-page h1 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--yrgo-blue);
+  text-align: left;
+}
+
+.student-list-page .student-card-text,
+.student-list-page .student-name,
+.student-list-page .student-education,
+.student-list-page .student-links {
+  text-align: left;
+}
+
+.student-list-page .student-search-wrap {
+  position: relative;
+  width: min(100%, 200px);
+  min-width: 0;
+}
+
+.student-list-page .student-search {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.2rem;
+  border: none;
+  background: transparent;
+  padding-right: 10px;
+  font-size: 12px;
+  text-align: right;
+}
+
+.student-list-page .student-search:focus {
+  outline: none;
+}
+
+.student-list-page .student-search::placeholder {
+  text-decoration: underline;
+}
+
+.student-list-page .student-search-icon {
+  position: absolute;
+  right: 2px;
+  bottom: 8px;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.student-list-page .student-list-snake {
+  display: block;
+  margin: 6px 0 12px 20px;
+  width: 164px;
+  height: 10px;
+}
+
+.student-list-page .student-grid {
+  list-style: none;
+  margin: 30px 20px 20px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.student-list-page .student-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+  border: 1px solid #111;
+  border-radius: 20px;
+  background: #f3f3f3;
+}
+
+/* Blå bakgrund + mjuk båge */
+.student-list-page .student-card-blob {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.student-list-page .student-card-blob::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 85%;
+  height: 100%;
+  background: var(--yrgo-blue);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.student-list-page .student-card-blob::after {
+  content: "";
+  position: absolute;
+  top: -8%;
+  right: 6%;
+  width: 35%;
+  height: 116%;
+  background: #f3f3f3;
+  border-radius: 50%;
+}
+
+.student-list-page .student-card-content {
+  position: relative;
+  z-index: 2;
+  min-height: 130px;
+  padding: 24px 135px 24px 30px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.student-list-page .student-card-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 125px;
+  color: #fff;
+}
+
+.student-list-page .student-name {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.05;
+  font-weight: 700;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.student-list-page .student-education {
+  margin: 0;
+  padding-top: 6px;
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.student-list-page .student-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.student-list-page .student-links a {
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.student-list-page .student-image-wrap {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 92px;
+  height: 92px;
+  border: 1px solid #111;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #ece9dc;
+}
+
+.student-list-page .student-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.student-list-page .student-list-curl-left {
+  position: fixed;
+  left: -28px;
+  top: 49%;
+  transform: translateY(-50%);
+  width: 190px;
+  height: 250px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 0;
 }
