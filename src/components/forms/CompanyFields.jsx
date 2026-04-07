@@ -4,13 +4,25 @@ import './CompanyFields.css'
 import Badge from './Badge'
 import Limit from './Limit'
 import InlineError from './InlineError'
+import EmploymentField from './EmploymentField'
 
-export default function CompanyFields({ errors = {}, company, register, traits: selectedTraits = [], skills: selectedSkills = [] }) {
+export default function CompanyFields({
+    errors = {},
+    company,
+    register,
+    watch
+ }) {
+
+    const selectedTraits = watch('traits', []);
 
     return (
         <>
             <div className='formGroup'>
-                <label htmlFor="name" className='formLabel'>Företag*</label>
+                <label 
+                    htmlFor="name" 
+                    className='formLabel'>
+                    Företag*
+                </label>
                 <input
                     type="text"
                     name="name"
@@ -32,37 +44,12 @@ export default function CompanyFields({ errors = {}, company, register, traits: 
 
             </div>
 
-            <fieldset className='formGroup'>
-                <legend className='formLabel'>
-                    Vilka roller söker ni?*
-                </legend>
-                <div className='checkboxGroup'>
-                    <input
-                        type="checkbox"
-                        id="webbutvecklare"
-                        className={errors.employment ? "errorBorder" : ""}
-                        value="webbutvecklare"
-                        {...register('employment', { required: true })}
-                    />
-                    <label htmlFor='webbutvecklare'>
-                        Webbutvecklare
-                    </label>
-                </div>
-
-                <div className='checkboxGroup'>
-                    <input
-                        type="checkbox"
-                        id="digitaldesigner"
-                        className={errors.employment ? "errorBorder" : ""}
-                        value="digitaldesigner"
-                        {...register('employment', { required: true })}
-                    />
-                    <label htmlFor='digitaldesigner'>
-                        Digital Designer
-                    </label>
-                </div>
-                { errors.employment && <InlineError error='Minst en roll måste väljas'/>}
-            </fieldset>
+            <EmploymentField
+                formLabel={"Vilka roller söker ni?"}
+                register={register}
+                errors={errors}
+                required={true}
+            />
 
             <fieldset className='formGroup'>
                 <legend className='formLabel'>
@@ -85,7 +72,6 @@ export default function CompanyFields({ errors = {}, company, register, traits: 
                 <legend className='formLabel'>
                     Vilka skills letar ni efter hos praktikanten?
                 </legend>
-                <Limit number={5}/>
                 <div className='badges'>
                     {skills.data.map(skill => (
                         <Badge
@@ -93,7 +79,6 @@ export default function CompanyFields({ errors = {}, company, register, traits: 
                             key={skill}
                             fieldName="skills"
                             register={register}
-                            disabled={selectedSkills.length >= 5 && !selectedSkills.includes(skill)}
                         />
                     ))}
                 </div>
