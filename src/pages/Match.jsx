@@ -1,16 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import "./Match.css";
-import BackLink from "../components/BackLink";
 import MatchingForm from "../components/MatchingForm";
+import MatchFound from "../components/MatchFound";
+import { useState } from "react";
 
 export default function Match() {
+
+  const [ matchedCompanies, setMatchedCompanies ] = useState(null)
+
   return (
-      <main className="registrationPage">
-        <div className="registrationSection">
-          <h1 className="formHeading">Hitta din match</h1>
-           <MatchingForm/>
-        </div>
-      </main>
+    <>
+      { !matchedCompanies && 
+        <main className="registrationPage">
+          <div className="registrationSection">
+            <MatchingForm
+              onMatch={setMatchedCompanies}
+            />
+          </div>
+        </main>
+      }
+           
+    { matchedCompanies && 
+      <MatchFound
+        companies={matchedCompanies}
+      />
+    }
+    </>
   );
 }
