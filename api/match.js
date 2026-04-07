@@ -4,7 +4,9 @@ import Company from "../models/company.js";
 const router = express.Router();
 
 const matchRouter = router.post("/", async (req, res) => {
-  const { employment, traits, skills } = req.body;
+  const employment = [].concat(req.body.employment ?? []);
+  const traits = [].concat(req.body.traits ?? []);
+  const skills = [].concat(req.body.skills ?? []);
   console.log(employment);
   const companies = await Company.find();
 
