@@ -23,6 +23,10 @@ export default function CompanyList() {
       .join(" ");
   }
 
+  function formatEmployment(value = "") {
+    return capitalizeNameWords(value);
+  }
+
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
@@ -43,7 +47,13 @@ export default function CompanyList() {
   const normalizedSearch = searchTerm.trim().toLowerCase();
   const filteredCompanies = companies.filter((company) => {
     const name = (company.name || "").toLowerCase();
-    return normalizedSearch === "" || name.includes(normalizedSearch);
+    const employment = (company.employment || []).join(" ").toLowerCase();
+
+    return (
+      normalizedSearch === "" ||
+      name.includes(normalizedSearch) ||
+      employment.includes(normalizedSearch)
+    );
   });
 
   if (loading)
@@ -83,6 +93,7 @@ export default function CompanyList() {
       <div className="company-grid">
         {filteredCompanies.map((company) => {
           const displayName = capitalizeNameWords(company.name || "");
+          const employmentTypes = company.employment || [];
 
           return (
             <div key={company._id} className="company-card">
@@ -90,6 +101,15 @@ export default function CompanyList() {
               <div className="company-card-content">
                 <div className="company-card-text">
                   <h3 className="company-name">{displayName}</h3>
+                  {!!employmentTypes.length && (
+                    <div className="company-employment-list">
+                      {employmentTypes.map((employment, index) => (
+                        <span key={index} className="company-employment-chip">
+                          {formatEmployment(employment)}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 
