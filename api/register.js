@@ -22,13 +22,17 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:code", async (req, res) => {
-  const { code } = req.params;
-  const company = await Company.findOne({ code: code });
+  try {
+    const { code } = req.params;
+    const company = await Company.findOne({ code: code });
 
-  if (!company)
-    return res.status(404).json({ error: "Företagskoden är ogiltig" });
+    if (!company)
+      return res.status(404).json({ error: "Företagskoden är ogiltig" });
 
-  res.status(200).json(company);
+    res.status(200).json(company);
+  } catch {
+    res.status(500).json({ error: "Något gick fel, försök igen" });
+  }
 });
 
 export default router;

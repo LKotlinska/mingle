@@ -1,0 +1,11 @@
+.matchContainer {
+}
+
+.matchContainer .bestMatch {
+  font-weight: 400;
+  margin: 0;
+}
+
+.cardContainer:first-child {
+  transform: rotate(2em);
+}

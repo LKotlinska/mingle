@@ -40,3 +40,93 @@ h1 {
   color: var(--yrgo-blue);
   font-size: 20px;
 }
+
+.formHeading {
+  font-size: 1.8em;
+  color: var(--yrgo-red);
+  margin: 0 0 0.6em 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
+}
+
+.formLabel {
+  display: block;
+  font-weight: 700;
+  font-size: 1.1em;
+  color: var(--yrgo-blue);
+  margin-bottom: 0.6em;
+}
+
+fieldset,
+legend {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+input[type="text"] {
+  box-sizing: border-box;
+  height: 3.5em;
+  border: 0.01em solid black;
+  border-radius: 0.6em;
+  padding: 0.1em 0.5em;
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  width: 1.3em;
+  aspect-ratio: 1 / 1;
+  border: 0.01em solid black;
+  accent-color: var(--yrgo-red);
+}
+
+.inputGrid {
+  display: grid;
+  grid-template-columns: 0.75fr 0.25fr;
+  gap: 0.5em;
+}
+
+button {
+  background-color: var(--yrgo-blue);
+  color: white;
+  border-radius: 2em;
+  border: none;
+}
+
+button:disabled {
+  background-color: rgb(110, 111, 128);
+  color: white;
+}
+
+.btnSubmit {
+  width: min-content;
+  padding: 1em 2em;
+}
+
+.btnUndo {
+  background-color: var(--yrgo-red);
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+input.errorBorder,
+input[type="checkbox"].errorBorder {
+  border: 0.01em solid var(--yrgo-red);
+}
+
+input[type="checkbox"].errorBorder {
+  outline: 0.1em solid var(--yrgo-red);
+}
+
+.formButtonContainer {
+  display: flex;
+  justify-content: space-between;
+}
