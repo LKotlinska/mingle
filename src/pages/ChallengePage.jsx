@@ -26,7 +26,7 @@ export default function ChallengePage() {
   return (
     <main className="challenge-page">
       <BackLink to="/student" />
-      <h1>Ge förslag på tre utmaningar</h1>
+      <h1 className="title-pill">Ge förslag på tre utmaningar</h1>
 
       <img className="challenge-image" src={challengeImage} alt="Utmaningar" />
 
@@ -43,7 +43,7 @@ export default function ChallengePage() {
         type="button"
         onClick={showThreeChallenges}
       >
-        {selectedChallenges.length === 0 ? "Utmaningar" : "Nya utmaningar"}
+        {selectedChallenges.length === 0 ? "Slumpa" : "Slumpa nya"}
       </button>
     </main>
   );

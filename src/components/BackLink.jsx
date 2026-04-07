@@ -8,7 +8,7 @@ export default function BackLink({ to = "/" }) {
         fontSize: "36px",
         fontWeight: "bold",
         color: "var(--yrgo-blue)",
-        marginLeft: "10px",
+        marginLeft: "15px",
         alignSelf: "flex-start",
       }}
     >

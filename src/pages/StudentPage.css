@@ -4,7 +4,7 @@
 
 .student-decor {
   width: calc(180px * 2 + 12px);
-  margin: 10px auto 5px;
+  margin: 30px auto 12px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -24,7 +24,7 @@
 .student-grid {
   list-style: none;
   padding: 0;
-  margin: 2rem 20px 20px;
+  margin: 3rem 20px 20px;
   display: grid;
   grid-template-columns: repeat(2, 180px);
   gap: 12px;
