@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const companies = await Company.find().select("name");
+    const companies = await Company.find().select("name employment");
     return res.status(200).json(companies);
   } catch (err) {
     return res.status(500).json({ error: "Kunde inte hämta företag" });
