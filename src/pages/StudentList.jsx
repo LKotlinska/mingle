@@ -4,6 +4,9 @@ import "./StudentList.css";
 import searchIcon from "../assets/images/search.png";
 import snake43 from "../assets/images/snake43.png";
 import curl40 from "../assets/images/curl40.png";
+import studentHat from "../assets/images/studenthat.jpg";
+
+const DEFAULT_STUDENT_IMAGE_KEY = "studenthat.jpg";
 
 export default function StudentList() {
   const [students, setStudents] = useState([]);
@@ -29,6 +32,14 @@ export default function StudentList() {
     } catch {
       return url;
     }
+  }
+
+  function resolveStudentImage(profileImage) {
+    if (!profileImage || profileImage === DEFAULT_STUDENT_IMAGE_KEY) {
+      return studentHat;
+    }
+
+    return profileImage;
   }
 
   useEffect(() => {
@@ -128,8 +139,12 @@ export default function StudentList() {
               <div className="student-image-wrap">
                 <img
                   className="student-image"
-                  src={student.profileImage}
+                  src={resolveStudentImage(student.profileImage)}
                   alt={displayName}
+                  onError={(event) => {
+                    event.currentTarget.onerror = null;
+                    event.currentTarget.src = studentHat;
+                  }}
                 />
               </div>
             </div>

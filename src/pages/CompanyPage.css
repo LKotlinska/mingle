@@ -5,5 +5,5 @@
 .companyPage .student-grid {
   grid-template-columns: 11.25rem;
   justify-content: center;
-  margin: 3rem auto 1.25rem;
+  margin: 1rem auto 1.25rem;
 }

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import studentHat from "../assets/images/studenthat.jpg";
 import Alert from "./Alert";
 
+const DEFAULT_STUDENT_IMAGE_KEY = "studenthat.jpg";
+
 export default function RegisterStudent() {
   const [formData, setFormData] = useState({
     name: "",
@@ -98,8 +100,14 @@ export default function RegisterStudent() {
     }
 
     try {
+      const profileImageToSave =
+        formData.profileImage === studentHat
+          ? DEFAULT_STUDENT_IMAGE_KEY
+          : formData.profileImage;
+
       const payload = {
         ...formData,
+        profileImage: profileImageToSave,
         links: cleanedLinks,
       };
 

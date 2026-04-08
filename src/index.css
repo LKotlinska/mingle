@@ -103,7 +103,7 @@ button:disabled {
 }
 
 .btnSubmit {
-  font-size: 1.25em;
+  font-size: 1em;
   width: min-content;
   padding: 0.6em 1.5em;
   white-space: nowrap;
