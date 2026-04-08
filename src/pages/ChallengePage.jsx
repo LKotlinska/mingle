@@ -39,11 +39,11 @@ export default function ChallengePage() {
       </ul>
 
       <button
-        className="challenge-button"
+        className="btnSubmit btnUndo"
         type="button"
         onClick={showThreeChallenges}
       >
-        {selectedChallenges.length === 0 ? "Utmaningar" : "Nya utmaningar ↻"}
+        {selectedChallenges.length === 0 ? "Utmaningar" : (<>Nya utmaningar <span className="material-symbols-outlined">autorenew</span></>)}
       </button>
     </main>
   );
