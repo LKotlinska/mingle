@@ -15,11 +15,13 @@ app.use(express.json({ limit: "10mb" }));
 app.use("/api/register", router);
 app.use("/api/companies", companiesRouter);
 app.use("/api/students", studentRouter);
-
 app.use("/api/match", matchRouter);
 
-mongoose.connect(process.env.DB_URI).then(() => {
-  app.listen(process.env.DB_PORT, () =>
-    console.log("Server running on port 3000"),
-  );
-});
+mongoose.connect(process.env.DB_URI);
+
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 8000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+export default app;
