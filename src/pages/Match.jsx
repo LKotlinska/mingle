@@ -24,6 +24,7 @@ export default function Match() {
     { matchedCompanies && 
       <MatchFound
         companies={matchedCompanies}
+        onMatch={setMatchedCompanies}
       />
     }
     </>

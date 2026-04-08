@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../pages/StudentList.css";
 import "./MatchFound.css";
 
-export default function MatchFound({ companies }) {
+export default function MatchFound({ companies, onMatch }) {
     const [best, ...rest] = companies;
 
     return(
@@ -49,7 +49,7 @@ export default function MatchFound({ companies }) {
             </div>
             <div className="matchBtnContainer">
             <Link to="/match">
-                <button className='btnSubmit btnUndo' type="button">
+                <button className='btnSubmit btnUndo' onClick={() => onMatch(null)} type="button">
                     Ny match
                     <span class="material-symbols-outlined">
                     autorenew
