@@ -20,7 +20,7 @@ export default function RegisterCompany() {
 
 
   const onSubmit = async (data) => {
-    const res = await fetch("/api/company", {
+    const res = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -39,7 +39,7 @@ export default function RegisterCompany() {
 
   const verifyCompany = async () => {
     setError("");
-    const res = await fetch(`/api/company/${code}`);
+    const res = await fetch(`/api/register/${code}`);
     if (!res.ok) {
       const { error } = await res.json();
       setCompany(null);
