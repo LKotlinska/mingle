@@ -3,8 +3,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 3em;
   max-width: fit-content;
-  height: 100%;
-  padding: 2em;
+  height: 12em;
   background-color: white;
   border: 0.01em solid black;
   display: flex;
@@ -18,5 +17,5 @@
   font-weight: 700;
   color: var(--yrgo-blue);
   font-size: 1.25em;
-  padding: 0.5em 0;
+  padding: 0.5em 0 0;
 }
