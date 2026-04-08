@@ -7,7 +7,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
-import Footer from "./components/footer.jsx";
 import Landing from "./pages/Landing.jsx";
 import Match from "./pages/Match.jsx";
 import ChallengePage from "./pages/ChallengePage.jsx";
@@ -35,7 +34,6 @@ function AppContent() {
         <Route path="/foretag-list" element={<CompanyList />} />
         <Route path="/foretag/registrering" element={<RegistrationCompany />} />
       </Routes>
-      <Footer />
     </>
   );
 }

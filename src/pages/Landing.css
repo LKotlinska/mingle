@@ -1,6 +1,7 @@
 .landing-container {
   position: relative;
-  min-height: 95vh;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;

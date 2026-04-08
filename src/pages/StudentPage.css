@@ -101,7 +101,8 @@
 .student-decor-curl {
   align-self: flex-end;
   margin: 0;
-  margin-right: calc((100vw - (180px * 2 + 12px)) / -2);
+  position: relative;
+  right: -20px;
   width: 100px;
   height: 135px;
 }
