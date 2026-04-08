@@ -11,10 +11,10 @@
 .challenge-page::before {
   content: "";
   position: absolute;
-  right: 10px;
+  right: 0.625rem;
   top: 55vh;
-  width: 70px;
-  height: 70px;
+  width: 4.375rem;
+  height: 4.375rem;
   background-image: url("../assets/images/rings28.png");
   background-repeat: no-repeat;
   background-size: contain;
@@ -28,12 +28,12 @@
   position: absolute;
   right: 0;
   top: 70vh;
-  width: 164px;
+  width: 10.25rem;
   background-image: url("../assets/images/snake43.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right center;
-  height: 10px;
+  height: 0.625rem;
   z-index: -1;
   pointer-events: none;
 }
@@ -41,32 +41,32 @@
 .challenge-list {
   margin: 0;
   padding: 0;
-  width: min(680px, 90vw);
+  width: min(42.5rem, 90vw);
   align-self: center;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .challenge-image {
   display: block;
   margin: 0 auto;
   width: auto;
-  height: 190px;
+  height: 11.875rem;
   max-width: 100%;
   object-fit: contain;
 }
 
 .challenge-item {
   list-style: none;
-  border: solid 1px black;
+  border: solid 0.0625rem black;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  border-radius: 12px;
-  font-size: 18px;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 1.125rem;
   color: var(--yrgo-blue);
   font-weight: 700;
 }

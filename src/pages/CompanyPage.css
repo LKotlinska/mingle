@@ -1,9 +1,9 @@
 .companyPage {
-  margin: 10px;
+  margin: 0.625rem;
 }
 
 .companyPage .student-grid {
-  grid-template-columns: 180px;
+  grid-template-columns: 11.25rem;
   justify-content: center;
-  margin: 3rem auto 20px;
+  margin: 3rem auto 1.25rem;
 }
