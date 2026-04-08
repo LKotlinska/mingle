@@ -204,3 +204,11 @@
   pointer-events: none;
   z-index: 0;
 }
+
+.student-list-page .company-card-content {
+  min-height: min-content;
+}
+
+.student-list-page .student-card:nth-child(odd):has(.company-card-content) .student-card-blob::before {
+  background: var(--yrgo-red);
+}
