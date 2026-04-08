@@ -38,6 +38,10 @@ export default function RegisterCompany() {
   };
 
   const verifyCompany = async () => {
+    if (!code.trim()) {
+      setError("Företagskod krävs");
+      return;
+    }
     setError("");
     const res = await fetch(`/api/register/${code}`);
     if (!res.ok) {
