@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BackLink from "../components/BackLink";
+import SearchField from "../components/SearchField";
 import "./StudentList.css";
-import searchIcon from "../assets/images/search.png";
 import snake43 from "../assets/images/snake43.png";
 import curl40 from "../assets/images/curl40.png";
 import studentHat from "../assets/images/studenthat.jpg";
@@ -90,17 +90,12 @@ export default function StudentList() {
 
       <div className="student-list-header">
         <h1>Lista på kandidater</h1>
-        <div className="student-search-wrap">
-          <input
-            className="student-search"
-            type="search"
-            placeholder="Sök namn eller utbildning"
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-            aria-label="Sök kandidater"
-          />
-          <img src={searchIcon} alt="" className="student-search-icon" />
-        </div>
+        <SearchField
+          placeholder="Sök namn eller utbildning"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          ariaLabel="Sök kandidater"
+        />
       </div>
 
       <img src={snake43} alt="" className="student-list-snake" />

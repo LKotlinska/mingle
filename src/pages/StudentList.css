@@ -31,41 +31,6 @@
   text-align: left;
 }
 
-.student-list-page .student-search-wrap {
-  position: relative;
-  width: min(100%, 12.5rem);
-  min-width: 0;
-}
-
-.student-list-page .student-search {
-  box-sizing: border-box;
-  width: 100%;
-  height: 2.2rem;
-  border: none;
-  background: transparent;
-  padding-right: 0.625rem;
-  font-size: 0.75rem;
-  text-align: right;
-}
-
-.student-list-page .student-search:focus {
-  outline: none;
-}
-
-.student-list-page .student-search::placeholder {
-  text-decoration: underline;
-}
-
-.student-list-page .student-search-icon {
-  position: absolute;
-  right: 0.125rem;
-  bottom: 0.5rem;
-  width: 1.125rem;
-  height: 1.125rem;
-  object-fit: contain;
-  pointer-events: none;
-}
-
 .student-list-page .student-list-snake {
   display: block;
   margin: 0.375rem 0 0.75rem 1.25rem;

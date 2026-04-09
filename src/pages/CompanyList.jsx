@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BackLink from "../components/BackLink";
+import SearchField from "../components/SearchField";
 import "./CompanyList.css";
-import searchIcon from "../assets/images/search.png";
 import defaultCompanyImage from "../assets/images/Company-List-icon.png";
 import snake43 from "../assets/images/snake43.png";
 import curl40 from "../assets/images/curl40.png";
@@ -75,17 +75,12 @@ export default function CompanyList() {
 
       <div className="company-list-header">
         <h1>Företagslista</h1>
-        <div className="company-search-wrap">
-          <input
-            className="company-search"
-            type="search"
-            placeholder="Sök företagsnamn"
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-            aria-label="Sök företag"
-          />
-          <img src={searchIcon} alt="" className="company-search-icon" />
-        </div>
+        <SearchField
+          placeholder="Sök företagsnamn"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          ariaLabel="Sök företag"
+        />
       </div>
 
       <img src={snake43} alt="" className="company-list-snake" />

@@ -1,0 +1,34 @@
+.search-field {
+  position: relative;
+  width: min(100%, 12.5rem);
+  min-width: 0;
+}
+
+.search-field-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.2rem;
+  border: none;
+  background: transparent;
+  padding-right: 1rem;
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+.search-field-input:focus {
+  outline: none;
+}
+
+.search-field-input::placeholder {
+  text-decoration: underline;
+}
+
+.search-field-icon {
+  position: absolute;
+  right: 0.125rem;
+  bottom: 0.5rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  object-fit: contain;
+  pointer-events: none;
+}

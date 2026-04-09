@@ -4,7 +4,7 @@
 .regForm {
   position: relative;
   max-width: 26.875rem;
-  margin: 2.5rem;
+  margin: 10px 2.5rem 2.5rem;
   padding: 1.5625rem;
   border-radius: 0.875rem;
   border: 0.0625rem solid #000;

@@ -21,10 +21,10 @@ export default function Navbar() {
 
   const studentLinks = [
     { to: "/student", label: "Hem" },
-    { to: "/student/registrering", label: "Registrera dig" },
-    { to: "/foretag-list", label: "Företags lista" },
     { to: "/match", label: "Matcha" },
-    { to: "/utmaningar", label: "Utmaning" },
+    { to: "/utmaningar", label: "Utmaningar" },
+    { to: "/foretag-list", label: "Företags lista" },
+    { to: "/student/registrering", label: "Registrera dig" },
     { to: "/student-list", label: "Studentlista" },
   ];
 
