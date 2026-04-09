@@ -17,9 +17,13 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background-color: rgba(255, 255, 255, 0.22);
-  -webkit-backdrop-filter: blur(0.375rem);
-  backdrop-filter: blur(0.375rem);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.46) 0%,
+    rgba(255, 255, 255, 0.34) 100%
+  );
+  -webkit-backdrop-filter: blur(0.625rem) saturate(1.12);
+  backdrop-filter: blur(0.625rem) saturate(1.12);
 }
 
 .header-logos {
@@ -71,7 +75,7 @@
 
 .landing-content {
   position: absolute;
-  top: 85%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
