@@ -15,3 +15,14 @@
   top: 0;
   right: 0;
 }
+
+.searchGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: baseline;
+}
+
+.searchSkills {
+  margin-left: auto;
+  width: fit-content;
+}
