@@ -111,6 +111,7 @@ export default function RegisterCompany() {
                             watch={watch}
                         />
                         { error && <InlineError error={error}/> }
+
                         <div className="formButtonContainer">
                             <Link to="/company">
                                 <button className='btnSubmit btnUndo' type="button">Ångra</button>

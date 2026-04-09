@@ -14,6 +14,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const { code, ...fields } = req.body;
+  console.log({ code, ...fields });
   const company = await Company.findOne({ code: code });
 
   if (!company) {
@@ -25,7 +26,7 @@ router.post("/", async (req, res) => {
     res.status(422).json({ error: error.details[0].message });
   }
 
-  Object.assign(company, fields);
+  Object.assign(company, { fields, isPresent: true });
   await company.save();
   res.json({ ok: true });
 });
