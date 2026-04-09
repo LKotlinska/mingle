@@ -1,5 +1,4 @@
 .matchSection {
-  padding: 0 2em 2em 2em;
   text-align: center;
 }
 .cards {
@@ -56,7 +55,8 @@
 .matchCard:first-of-type {
   transform: rotate(-15deg);
   position: absolute;
-  left: calc(50% - 10em);
+  bottom: 3.3em;
+  left: calc(50% - 8.5em);
   z-index: 1;
   animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -64,7 +64,7 @@
 .matchCard:last-of-type {
   transform: rotate(15deg);
   position: absolute;
-  left: calc(50% - 2.5em);
+  left: calc(50% - 1.5em);
   z-index: 0;
   animation: slideInRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: 0.1s;
@@ -93,27 +93,27 @@
 }
 
 .doodle--topleft {
-  top: -1;
-  left: calc(44% - 12em);
+  top: 3em;
+  left: 0.4em;
   animation-delay: 0.9s;
 }
 
 .doodle--bottomright {
-  top: -0.5;
-  left: calc(70% + 5.5em);
-  animation-delay: 1.1s;
+  top: 2em;
+  right: 0.8em;
+  animation-delay: 0.9s;
 }
 
 .doodle--stars-left {
-  bottom: 0;
-  left: calc(60% - 14em);
-  animation-delay: 1s;
+  bottom: 2em;
+  left: 2em;
+  animation-delay: 0.9s;
 }
 
 .doodle--stars-right {
-  bottom: 0;
-  left: calc(70% + 4em);
-  animation-delay: 1.2s;
+  bottom: 2em;
+  right: 3em;
+  animation-delay: 0.9s;
 }
 
 .uppercase {
@@ -132,4 +132,8 @@
   justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
+}
+
+.list-content {
+  padding: 0 1em 1em 1em;
 }

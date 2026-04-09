@@ -136,3 +136,7 @@ input[type="checkbox"].errorBorder {
   display: flex;
   justify-content: space-between;
 }
+
+.material-symbols-outlined {
+  font-size: 0.95em;
+}

@@ -29,7 +29,7 @@ export default function MatchFound({ companies, onMatch }) {
             className="doodle doodle--stars-left"
           />
           <img
-            src="/doodlez/stars.png"
+            src="/doodlez/stars-right.png"
             alt=""
             className="doodle doodle--stars-right"
           />

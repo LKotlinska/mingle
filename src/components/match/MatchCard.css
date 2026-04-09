@@ -1,9 +1,10 @@
 .matchCard {
   margin: 0;
-  aspect-ratio: 1 / 1;
   border-radius: 3em;
-  max-width: fit-content;
-  height: 12em;
+  max-height: 8em;
+  aspect-ratio: 1 / 1;
+  padding: 0.8em;
+  width: 8em;
   background-color: white;
   border: 0.01em solid black;
   display: flex;
@@ -12,6 +13,9 @@
   align-items: center;
 }
 
+.matchCard img {
+  width: 65%;
+}
 .cardCaption {
   text-transform: capitalize;
   font-weight: 700;
