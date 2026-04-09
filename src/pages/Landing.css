@@ -122,28 +122,3 @@
   background-color: var(--yrgo-blue);
   color: white;
 }
-
-@media (max-height: 760px) {
-  .header-logos {
-    margin-top: 2.25rem;
-  }
-
-  .landing-main-image {
-    margin-top: 1.25rem;
-    max-height: 34vh;
-    object-fit: contain;
-  }
-
-  .landing-content h1 {
-    margin-bottom: 1.1rem;
-    font-size: 1.2rem;
-  }
-
-  .buttons-container {
-    gap: 0.9rem;
-  }
-
-  .btn {
-    padding: 0.85rem 1rem;
-  }
-}
