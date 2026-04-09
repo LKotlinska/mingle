@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import skills from '../../data/skills.json'
 import traits from '../../data/traits.json'
 import './CompanyFields.css'
@@ -5,6 +6,7 @@ import Badge from './Badge'
 import Limit from './Limit'
 import InlineError from './InlineError'
 import EmploymentField from './EmploymentField'
+import SearchField from '../SearchField'
 
 export default function CompanyFields({
     errors = {},
@@ -13,7 +15,13 @@ export default function CompanyFields({
     watch
  }) {
 
+    const [traitSearch, setTraitSearch] = useState('');
+    const [skillSearch, setSkillSearch] = useState('');
+
     const selectedTraits = watch('traits', []);
+
+    const filteredTraits = traits.data.filter(t => t.toLowerCase().includes(traitSearch.toLowerCase()));
+    const filteredSkills = skills.data.filter(s => s.toLowerCase().includes(skillSearch.toLowerCase()));
 
     return (
         <>
@@ -55,9 +63,16 @@ export default function CompanyFields({
                 <legend className='formLabel'>
                     Vilka egenskaper är viktiga för er hos en praktikant?
                 </legend>
-                <Limit number={5}/>
+                <div className='searchSkills'>
+                    <SearchField
+                        value={traitSearch}
+                        onChange={e => setTraitSearch(e.target.value)}
+                        placeholder="Sök egenskaper..."
+                        ariaLabel="Sök egenskaper"
+                    />
+                </div>
                 <div className='badges'>
-                    {traits.data.map(trait => (
+                    {filteredTraits.map(trait => (
                         <Badge
                             name={trait}
                             key={trait}
@@ -72,8 +87,16 @@ export default function CompanyFields({
                 <legend className='formLabel'>
                     Vilka skills letar ni efter hos praktikanten?
                 </legend>
+                <div className='searchSkills'>
+                    <SearchField
+                        value={skillSearch}
+                        onChange={e => setSkillSearch(e.target.value)}
+                        placeholder="Sök skills..."
+                        ariaLabel="Sök skills"
+                    />
+                </div>
                 <div className='badges'>
-                    {skills.data.map(skill => (
+                    {filteredSkills.map(skill => (
                         <Badge
                             name={skill}
                             key={skill}
