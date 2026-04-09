@@ -3,8 +3,23 @@
 }
 
 .registrationSection {
+  position: relative;
   margin: 2em;
   padding: 1em;
   border-radius: 1em;
   border: 0.01em solid black;
+}
+
+.regBow {
+  position: absolute;
+}
+
+.regBowLeft {
+  top: 0;
+  left: 0;
+}
+
+.regBowRight {
+  top: 0;
+  right: 0;
 }

@@ -1,3 +1,17 @@
 .match-page {
   margin: 0;
 }
+
+.regBow {
+  position: absolute;
+}
+
+.regBowLeft {
+  top: 0;
+  left: 0;
+}
+
+.regBowRight {
+  top: 0;
+  right: 0;
+}
