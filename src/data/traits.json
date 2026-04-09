@@ -1,3 +1,24 @@
 {
-    "data": ["Kreativ", "Problemlösare", "Queen", "Snäll", "Introvert", "Snake", "Snitch", "Noggrann", "Flexibel", "Samarbetsvillig", "Tålmodig", "Nyfiken", "Organiserad", "Kommunikativ", "Empatisk", "Innovativ", "Analytisk"]
+    "data": [
+        "Kreativ", 
+        "Problemlösare", 
+        "Initiativtagande", 
+        "Noggrann", 
+        "Anpassningsbar", 
+        "Strukturerad",
+        "Ansvarstagande",
+        "Samarbetsvillig", 
+        "Tålmodig", 
+        "Nyfiken",
+        "Lyhörd", 
+        "Stresstålig",
+        "Driven",
+        "Ödmjuk", 
+        "Kommunikativ",
+        "Målinriktad", 
+        "Empatisk", 
+        "Innovativ", 
+        "Analytisk",
+        "Självgående"    
+    ]
 }

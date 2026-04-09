@@ -87,6 +87,7 @@ export default function RegisterCompany() {
               maxLength={10}
               {...register("code", {
                 required: "Företagskod krävs",
+                setValueAs: (v) => v.toLowerCase(),
                 pattern: {
                   value: /^[a-zA-Z0-9]+$/,
                   message: "Koden får bara innehålla bokstäver och siffror",
@@ -111,6 +112,7 @@ export default function RegisterCompany() {
                             watch={watch}
                         />
                         { error && <InlineError error={error}/> }
+
                         <div className="formButtonContainer">
                             <Link to="/company">
                                 <button className='btnSubmit btnUndo' type="button">Ångra</button>
