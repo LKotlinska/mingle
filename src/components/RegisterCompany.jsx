@@ -87,6 +87,7 @@ export default function RegisterCompany() {
               maxLength={10}
               {...register("code", {
                 required: "Företagskod krävs",
+                setValueAs: (v) => v.toLowerCase(),
                 pattern: {
                   value: /^[a-zA-Z0-9]+$/,
                   message: "Koden får bara innehålla bokstäver och siffror",
