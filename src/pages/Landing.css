@@ -71,7 +71,7 @@
 
 .landing-content {
   position: absolute;
-  top: 95%;
+  bottom: -4em;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
