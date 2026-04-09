@@ -113,6 +113,18 @@
   overflow-wrap: anywhere;
 }
 
+.company-list-page .company-employment-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.125rem;
+}
+
+.company-list-page .company-employment-chip {
+  display: block;
+  line-height: 1.2;
+}
+
 .company-list-page .company-image-wrap {
   position: absolute;
   right: 1rem;
