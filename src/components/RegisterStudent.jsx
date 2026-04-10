@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import studentHat from "../assets/images/studenthat.jpg";
+import studentPictureIcon from "../assets/images/student-picture.png";
 import Alert from "./Alert";
 
 const DEFAULT_STUDENT_IMAGE_KEY = "studenthat.jpg";
@@ -81,6 +82,13 @@ export default function RegisterStudent() {
       ...currentData,
       profileImage: studentHat,
     }));
+  }
+
+  function closeImageMenu(event) {
+    const details = event.currentTarget.closest("details");
+    if (details) {
+      details.removeAttribute("open");
+    }
   }
 
   async function handleSubmit(event) {
@@ -179,15 +187,49 @@ export default function RegisterStudent() {
           </div>
           <input
             className="hiddenFileInput"
-            id="profileImage"
+            id="profileImageLibrary"
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
           />
+          <input
+            className="hiddenFileInput"
+            id="profileImageCamera"
+            type="file"
+            accept="image/*"
+            capture="user"
+            onChange={handleImageUpload}
+          />
           <div className="profileImageActions">
-            <label className="imageActionButton" htmlFor="profileImage">
-              Välj bild
-            </label>
+            <details className="imageActionDropdown">
+              <summary
+                className="imageActionButton imageActionButtonSummary"
+                aria-label="Lägg till bild"
+              >
+                <img
+                  className="imageActionIcon"
+                  src={studentPictureIcon}
+                  alt=""
+                  aria-hidden="true"
+                />
+              </summary>
+              <div className="imageActionDropdownMenu">
+                <label
+                  className="imageActionMenuItem imageActionMenuItemCamera"
+                  htmlFor="profileImageCamera"
+                  onClick={closeImageMenu}
+                >
+                  Ta bild
+                </label>
+                <label
+                  className="imageActionMenuItem imageActionMenuItemLibrary"
+                  htmlFor="profileImageLibrary"
+                  onClick={closeImageMenu}
+                >
+                  Kamerarulle
+                </label>
+              </div>
+            </details>
             {imagePreview !== studentHat && (
               <button
                 className="imageActionButton"
