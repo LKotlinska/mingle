@@ -5,6 +5,7 @@ const studentSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    trim: true,
   },
   education: {
     type: String,
@@ -23,6 +24,8 @@ const studentSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+studentSchema.index({ name: 1, education: 1 }, { unique: true });
 
 function validateStudent(student) {
   const schema = Joi.object({

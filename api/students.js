@@ -20,10 +20,31 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    const student = new Student(req.body);
+    const normalizedName = req.body.name.trim();
+    const existingStudent = await Student.findOne({
+      name: normalizedName,
+      education: req.body.education,
+    });
+
+    if (existingStudent) {
+      return res.status(409).json({
+        error: "Den här studenten är redan registrerad för vald utbildning.",
+      });
+    }
+
+    const student = new Student({
+      ...req.body,
+      name: normalizedName,
+    });
     await student.save();
     return res.status(201).json(student);
   } catch (err) {
+    if (err?.code === 11000) {
+      return res.status(409).json({
+        error: "Den här studenten är redan registrerad för vald utbildning.",
+      });
+    }
+
     return res.status(500).json({ error: "Kunde inte spara studenten" });
   }
 });
