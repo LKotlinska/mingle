@@ -2,10 +2,10 @@ import React from "react";
 import "./StudentPage.css";
 import BackLink from "../components/BackLink";
 import PageCardGrid from "../components/PageCardGrid";
-import regIcon from "../assets/images/reg-icon.png";
+import regIcon from "../assets/images/reg-icon.svg";
 import matchIcon from "../assets/images/match-icon.png";
-import challengeIcon from "../assets/images/challange-icon.png";
-import companyListIcon from "../assets/images/Company-List-icon.png";
+import challengeIcon from "../assets/images/challange-icon.svg";
+import companyListIcon from "../assets/images/Company-List-icon.svg";
 import starsIcon from "../assets/images/stars.png";
 import snakeIcon from "../assets/images/snake42.png";
 import snakeBottomIcon from "../assets/images/snake41.png";
@@ -14,8 +14,8 @@ import curlIcon from "../assets/images/curl41.png";
 const studentCards = [
   { to: "/match", icon: matchIcon, label: "Matcha" },
   { to: "/utmaningar", icon: challengeIcon, label: "Utmaningar" },
-  { to: "/foretag-list", icon: companyListIcon, label: "Företags lista" },
-  { to: "/student/registrering", icon: regIcon, label: "Anmäl dig" },
+  { to: "/foretag-list", icon: companyListIcon, label: "Lista på företag" },
+  { to: "/student/registrering", icon: regIcon, label: "Anmäl din närvaro" },
 ];
 
 export default function StudentPage() {

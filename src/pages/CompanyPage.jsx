@@ -2,8 +2,8 @@ import React from "react";
 import "./StudentPage.css";
 import "./CompanyPage.css";
 import PageCardGrid from "../components/PageCardGrid";
-import regIcon from "../assets/images/reg-icon.png";
-import companyListIcon from "../assets/images/Company-List-icon.png";
+import regIcon from "../assets/images/reg-icon.svg";
+import companyListIcon from "../assets/images/Company-List-icon.svg";
 import starsIcon from "../assets/images/stars.png";
 import snakeIcon from "../assets/images/snake42.png";
 import snakeBottomIcon from "../assets/images/snake41.png";
@@ -16,7 +16,7 @@ const companyCards = [
     icon: regIcon,
     label: "Registrera ditt företag",
   },
-  { to: "/student-list", icon: companyListIcon, label: "Studentlista" },
+  { to: "/student-list", icon: companyListIcon, label: "Lista på kandidater" },
 ];
 
 export default function CompanyPage() {
