@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BackLink from "../components/BackLink";
 import SearchField from "../components/SearchField";
 import "./CompanyList.css";
-import defaultCompanyImage from "../assets/images/Company-List-icon.png";
+import defaultCompanyImage from "../assets/images/Company-List-icon.svg";
 import snake43 from "../assets/images/snake43.png";
 import curl40 from "../assets/images/curl40.png";
 
@@ -74,7 +74,7 @@ export default function CompanyList() {
       <BackLink to="/" />
 
       <div className="company-list-header">
-        <h1>Företagslista</h1>
+        <h1>Lista på företag</h1>
         <SearchField
           placeholder="Sök företagsnamn"
           value={searchTerm}
