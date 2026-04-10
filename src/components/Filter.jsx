@@ -3,11 +3,11 @@ import filterIcon from "../assets/images/filter-icon.png";
 import "./Filter.css";
 
 export default function Filter({
-  value,
-  onChange,
+  selectedValues = [],
+  onToggle,
   onClear,
   options = [],
-  ariaLabel = "Filter",
+  ariaLabel = "Öppna filtermeny",
 }) {
   function closeMenu(event) {
     const details = event.currentTarget.closest("details");
@@ -16,8 +16,8 @@ export default function Filter({
     }
   }
 
-  function handleSelect(nextValue, event) {
-    onChange(nextValue);
+  function handleToggle(nextValue, event) {
+    onToggle(nextValue);
     closeMenu(event);
   }
 
@@ -40,13 +40,13 @@ export default function Filter({
 
         <div className="filterMenu">
           <div className="filterMenuHeader">
-            <span className="filterMenuTitle">Filter</span>
+            <span className="filterMenuTitle">Filtrera</span>
             <button
               className="filterClearButton"
               type="button"
               onClick={handleClear}
             >
-              Rensa alla filter
+              Rensa alla val
             </button>
           </div>
 
@@ -55,11 +55,11 @@ export default function Filter({
               <button
                 key={option.value}
                 className={`filterMenuItem ${
-                  value === option.value ? "is-active" : ""
+                  selectedValues.includes(option.value) ? "is-active" : ""
                 }`}
                 type="button"
-                onClick={(event) => handleSelect(option.value, event)}
-                aria-pressed={value === option.value}
+                onClick={(event) => handleToggle(option.value, event)}
+                aria-pressed={selectedValues.includes(option.value)}
               >
                 <span className="filterMenuBox" aria-hidden="true" />
                 <span className="filterMenuLabel">{option.label}</span>

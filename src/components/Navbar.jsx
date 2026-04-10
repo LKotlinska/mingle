@@ -23,7 +23,7 @@ export default function Navbar() {
     { to: "/student", label: "Hem" },
     { to: "/match", label: "Matcha" },
     { to: "/utmaningar", label: "Utmaningar" },
-    { to: "/foretag-list", label: "Företags lista" },
+    { to: "/foretag-list", label: "Lista på företag" },
     { to: "/student/registrering", label: "Registrera dig" },
     { to: "/student-list", label: "Lista på kandidater" },
   ];
@@ -31,7 +31,7 @@ export default function Navbar() {
   const companyLinks = [
     { to: "/foretag", label: "Hem" },
     { to: "/foretag/registrering", label: "Registrera företag" },
-    { to: "/student-list", label: "Kandidat lista" },
+    { to: "/student-list", label: "Lista på kandidater" },
   ];
 
   const companyRoutes = ["/foretag", "/foretag/registrering", "/student-list"];
@@ -68,7 +68,7 @@ export default function Navbar() {
               </h2>
               <img
                 src={navbarTitle}
-                alt="Navbar title"
+                alt="Navigationsrubrik"
                 className="navbar-title-image"
               />
             </div>

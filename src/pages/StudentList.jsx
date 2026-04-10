@@ -14,12 +14,15 @@ const STUDENT_FILTER_OPTIONS = [
   { value: "z-a", label: "Z-A" },
 ];
 
+const STUDENT_CATEGORY_FILTERS = ["digital-designers", "webbutvecklare"];
+const STUDENT_SORT_FILTERS = ["a-z", "z-a"];
+
 const DEFAULT_STUDENT_IMAGE_KEY = "studenthat.jpg";
 
 export default function StudentList() {
   const [students, setStudents] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeFilter, setActiveFilter] = useState("");
+  const [activeFilters, setActiveFilters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -51,20 +54,67 @@ export default function StudentList() {
     return profileImage;
   }
 
-  function matchesStudentFilter(student, filterValue) {
-    if (!filterValue) return true;
+  function toggleStudentFilter(filterValue) {
+    setActiveFilters((currentFilters) => {
+      const hasFilter = currentFilters.includes(filterValue);
+      const isCategoryFilter = STUDENT_CATEGORY_FILTERS.includes(filterValue);
+      const isSortFilter = STUDENT_SORT_FILTERS.includes(filterValue);
+
+      if (isCategoryFilter) {
+        const withoutCategoryFilters = currentFilters.filter(
+          (value) => !STUDENT_CATEGORY_FILTERS.includes(value),
+        );
+
+        if (hasFilter) {
+          return withoutCategoryFilters;
+        }
+
+        return [...withoutCategoryFilters, filterValue];
+      }
+
+      if (isSortFilter) {
+        const withoutSortFilters = currentFilters.filter(
+          (value) => !STUDENT_SORT_FILTERS.includes(value),
+        );
+
+        if (hasFilter) {
+          return withoutSortFilters;
+        }
+
+        return [...withoutSortFilters, filterValue];
+      }
+
+      if (hasFilter) {
+        return currentFilters.filter((value) => value !== filterValue);
+      }
+
+      return [...currentFilters, filterValue];
+    });
+  }
+
+  function matchesStudentFilter(student, filters) {
+    if (!filters.length) return true;
 
     const education = (student.education || "").toLowerCase();
 
-    if (filterValue === "digital-designers") {
-      return education.includes("digital design");
-    }
+    const categoryFilters = filters.filter(
+      (filterValue) =>
+        filterValue === "digital-designers" || filterValue === "webbutvecklare",
+    );
 
-    if (filterValue === "webbutvecklare") {
-      return education.includes("webbutvecklare");
-    }
+    if (!categoryFilters.length) return true;
 
-    return true;
+    return categoryFilters.some((filterValue) => {
+      if (filterValue === "digital-designers") {
+        return education.includes("digital design");
+      }
+
+      if (filterValue === "webbutvecklare") {
+        return education.includes("webbutvecklare");
+      }
+
+      return false;
+    });
   }
 
   useEffect(() => {
@@ -94,17 +144,17 @@ export default function StudentList() {
         (normalizedSearch === "" ||
           name.includes(normalizedSearch) ||
           education.includes(normalizedSearch)) &&
-        matchesStudentFilter(student, activeFilter)
+        matchesStudentFilter(student, activeFilters)
       );
     })
     .sort((a, b) => {
-      if (activeFilter === "a-z") {
+      if (activeFilters.includes("a-z")) {
         return (a.name || "").localeCompare(b.name || "", "sv", {
           sensitivity: "base",
         });
       }
 
-      if (activeFilter === "z-a") {
+      if (activeFilters.includes("z-a")) {
         return (b.name || "").localeCompare(a.name || "", "sv", {
           sensitivity: "base",
         });
@@ -142,9 +192,9 @@ export default function StudentList() {
 
       <div className="student-list-filter-row">
         <Filter
-          value={activeFilter}
-          onChange={setActiveFilter}
-          onClear={() => setActiveFilter("")}
+          selectedValues={activeFilters}
+          onToggle={toggleStudentFilter}
+          onClear={() => setActiveFilters([])}
           options={STUDENT_FILTER_OPTIONS}
           ariaLabel="Öppna filter för kandidater"
         />

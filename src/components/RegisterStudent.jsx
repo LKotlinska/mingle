@@ -273,7 +273,7 @@ export default function RegisterStudent() {
         </div>
 
         <div>
-          <label htmlFor="link-0">Link</label>
+          <label htmlFor="link-0">Länk</label>
           {formData.links.map((link, index) => (
             <input
               className="formInput linkInput"

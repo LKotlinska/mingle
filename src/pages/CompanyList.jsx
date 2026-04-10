@@ -14,10 +14,13 @@ const COMPANY_FILTER_OPTIONS = [
   { value: "z-a", label: "Z-A" },
 ];
 
+const COMPANY_CATEGORY_FILTERS = ["digital-designers", "webbutvecklare"];
+const COMPANY_SORT_FILTERS = ["a-z", "z-a"];
+
 export default function CompanyList() {
   const [companies, setCompanies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeFilter, setActiveFilter] = useState("");
+  const [activeFilters, setActiveFilters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -36,27 +39,74 @@ export default function CompanyList() {
     return capitalizeNameWords(value);
   }
 
-  function matchesCompanyFilter(company, filterValue) {
-    if (!filterValue) return true;
+  function toggleCompanyFilter(filterValue) {
+    setActiveFilters((currentFilters) => {
+      const hasFilter = currentFilters.includes(filterValue);
+      const isCategoryFilter = COMPANY_CATEGORY_FILTERS.includes(filterValue);
+      const isSortFilter = COMPANY_SORT_FILTERS.includes(filterValue);
+
+      if (isCategoryFilter) {
+        const withoutCategoryFilters = currentFilters.filter(
+          (value) => !COMPANY_CATEGORY_FILTERS.includes(value),
+        );
+
+        if (hasFilter) {
+          return withoutCategoryFilters;
+        }
+
+        return [...withoutCategoryFilters, filterValue];
+      }
+
+      if (isSortFilter) {
+        const withoutSortFilters = currentFilters.filter(
+          (value) => !COMPANY_SORT_FILTERS.includes(value),
+        );
+
+        if (hasFilter) {
+          return withoutSortFilters;
+        }
+
+        return [...withoutSortFilters, filterValue];
+      }
+
+      if (hasFilter) {
+        return currentFilters.filter((value) => value !== filterValue);
+      }
+
+      return [...currentFilters, filterValue];
+    });
+  }
+
+  function matchesCompanyFilter(company, filters) {
+    if (!filters.length) return true;
 
     const employmentTypes = company.employment || [];
     const normalizedEmployment = employmentTypes.map((employment) =>
       (employment || "").toLowerCase(),
     );
 
-    if (filterValue === "digital-designers") {
-      return normalizedEmployment.some((employment) =>
-        employment.includes("digital design"),
-      );
-    }
+    const categoryFilters = filters.filter(
+      (filterValue) =>
+        filterValue === "digital-designers" || filterValue === "webbutvecklare",
+    );
 
-    if (filterValue === "webbutvecklare") {
-      return normalizedEmployment.some((employment) =>
-        employment.includes("webbutvecklare"),
-      );
-    }
+    if (!categoryFilters.length) return true;
 
-    return true;
+    return categoryFilters.some((filterValue) => {
+      if (filterValue === "digital-designers") {
+        return normalizedEmployment.some((employment) =>
+          employment.includes("digital design"),
+        );
+      }
+
+      if (filterValue === "webbutvecklare") {
+        return normalizedEmployment.some((employment) =>
+          employment.includes("webbutvecklare"),
+        );
+      }
+
+      return false;
+    });
   }
 
   useEffect(() => {
@@ -86,17 +136,17 @@ export default function CompanyList() {
         (normalizedSearch === "" ||
           name.includes(normalizedSearch) ||
           employment.includes(normalizedSearch)) &&
-        matchesCompanyFilter(company, activeFilter)
+        matchesCompanyFilter(company, activeFilters)
       );
     })
     .sort((a, b) => {
-      if (activeFilter === "a-z") {
+      if (activeFilters.includes("a-z")) {
         return (a.name || "").localeCompare(b.name || "", "sv", {
           sensitivity: "base",
         });
       }
 
-      if (activeFilter === "z-a") {
+      if (activeFilters.includes("z-a")) {
         return (b.name || "").localeCompare(a.name || "", "sv", {
           sensitivity: "base",
         });
@@ -134,9 +184,9 @@ export default function CompanyList() {
 
       <div className="company-list-filter-row">
         <Filter
-          value={activeFilter}
-          onChange={setActiveFilter}
-          onClear={() => setActiveFilter("")}
+          selectedValues={activeFilters}
+          onToggle={toggleCompanyFilter}
+          onClear={() => setActiveFilters([])}
           options={COMPANY_FILTER_OPTIONS}
           ariaLabel="Öppna filter för företag"
         />
