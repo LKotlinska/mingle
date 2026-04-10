@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import BackLink from "../components/BackLink";
 import SearchField from "../components/SearchField";
+import Filter from "../components/Filter";
 import "./CompanyList.css";
 import defaultCompanyImage from "../assets/images/Company-List-icon.svg";
 import snake43 from "../assets/images/snake43.png";
 import curl40 from "../assets/images/curl40.png";
 
+const COMPANY_FILTER_OPTIONS = [
+  { value: "digital-designers", label: "Digital designers" },
+  { value: "webbutvecklare", label: "Webbutvecklare" },
+  { value: "a-z", label: "A-Z" },
+  { value: "z-a", label: "Z-A" },
+];
+
 export default function CompanyList() {
   const [companies, setCompanies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeFilter, setActiveFilter] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -25,6 +34,29 @@ export default function CompanyList() {
 
   function formatEmployment(value = "") {
     return capitalizeNameWords(value);
+  }
+
+  function matchesCompanyFilter(company, filterValue) {
+    if (!filterValue) return true;
+
+    const employmentTypes = company.employment || [];
+    const normalizedEmployment = employmentTypes.map((employment) =>
+      (employment || "").toLowerCase(),
+    );
+
+    if (filterValue === "digital-designers") {
+      return normalizedEmployment.some((employment) =>
+        employment.includes("digital design"),
+      );
+    }
+
+    if (filterValue === "webbutvecklare") {
+      return normalizedEmployment.some((employment) =>
+        employment.includes("webbutvecklare"),
+      );
+    }
+
+    return true;
   }
 
   useEffect(() => {
@@ -45,16 +77,33 @@ export default function CompanyList() {
   }, []);
 
   const normalizedSearch = searchTerm.trim().toLowerCase();
-  const filteredCompanies = companies.filter((company) => {
-    const name = (company.name || "").toLowerCase();
-    const employment = (company.employment || []).join(" ").toLowerCase();
+  const filteredCompanies = [...companies]
+    .filter((company) => {
+      const name = (company.name || "").toLowerCase();
+      const employment = (company.employment || []).join(" ").toLowerCase();
 
-    return (
-      normalizedSearch === "" ||
-      name.includes(normalizedSearch) ||
-      employment.includes(normalizedSearch)
-    );
-  });
+      return (
+        (normalizedSearch === "" ||
+          name.includes(normalizedSearch) ||
+          employment.includes(normalizedSearch)) &&
+        matchesCompanyFilter(company, activeFilter)
+      );
+    })
+    .sort((a, b) => {
+      if (activeFilter === "a-z") {
+        return (a.name || "").localeCompare(b.name || "", "sv", {
+          sensitivity: "base",
+        });
+      }
+
+      if (activeFilter === "z-a") {
+        return (b.name || "").localeCompare(a.name || "", "sv", {
+          sensitivity: "base",
+        });
+      }
+
+      return 0;
+    });
 
   if (loading)
     return (
@@ -80,6 +129,16 @@ export default function CompanyList() {
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           ariaLabel="Sök företag"
+        />
+      </div>
+
+      <div className="company-list-filter-row">
+        <Filter
+          value={activeFilter}
+          onChange={setActiveFilter}
+          onClear={() => setActiveFilter("")}
+          options={COMPANY_FILTER_OPTIONS}
+          ariaLabel="Öppna filter för företag"
         />
       </div>
 

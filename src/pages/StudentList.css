@@ -17,6 +17,14 @@
   padding: 0 1.25rem;
 }
 
+.student-list-page .student-list-filter-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.25rem 0;
+  position: relative;
+  z-index: 30;
+}
+
 .student-list-page h1 {
   margin: 0;
   font-size: 1.25rem;
@@ -40,7 +48,7 @@
 
 .student-list-page .student-grid {
   list-style: none;
-  margin: 1.875rem 1.25rem 1.25rem;
+  margin: 0.2rem 1.25rem 1.25rem;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
@@ -161,7 +169,7 @@
 .student-list-page .student-list-curl-left {
   position: fixed;
   left: -1.75rem;
-  top: 49%;
+  top: 58%;
   transform: translateY(-50%);
   width: 11.875rem;
   height: 15.625rem;

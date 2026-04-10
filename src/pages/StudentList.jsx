@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from "react";
 import BackLink from "../components/BackLink";
 import SearchField from "../components/SearchField";
+import Filter from "../components/Filter";
 import "./StudentList.css";
 import snake43 from "../assets/images/snake43.png";
 import curl40 from "../assets/images/curl40.png";
 import studentHat from "../assets/images/studenthat.jpg";
+
+const STUDENT_FILTER_OPTIONS = [
+  { value: "digital-designers", label: "Digital designers" },
+  { value: "webbutvecklare", label: "Webbutvecklare" },
+  { value: "a-z", label: "A-Z" },
+  { value: "z-a", label: "Z-A" },
+];
 
 const DEFAULT_STUDENT_IMAGE_KEY = "studenthat.jpg";
 
 export default function StudentList() {
   const [students, setStudents] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeFilter, setActiveFilter] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -42,6 +51,22 @@ export default function StudentList() {
     return profileImage;
   }
 
+  function matchesStudentFilter(student, filterValue) {
+    if (!filterValue) return true;
+
+    const education = (student.education || "").toLowerCase();
+
+    if (filterValue === "digital-designers") {
+      return education.includes("digital design");
+    }
+
+    if (filterValue === "webbutvecklare") {
+      return education.includes("webbutvecklare");
+    }
+
+    return true;
+  }
+
   useEffect(() => {
     const fetchStudents = async () => {
       try {
@@ -60,16 +85,33 @@ export default function StudentList() {
   }, []);
 
   const normalizedSearch = searchTerm.trim().toLowerCase();
-  const filteredStudents = students.filter((student) => {
-    const name = (student.name || "").toLowerCase();
-    const education = (student.education || "").toLowerCase();
+  const filteredStudents = [...students]
+    .filter((student) => {
+      const name = (student.name || "").toLowerCase();
+      const education = (student.education || "").toLowerCase();
 
-    return (
-      normalizedSearch === "" ||
-      name.includes(normalizedSearch) ||
-      education.includes(normalizedSearch)
-    );
-  });
+      return (
+        (normalizedSearch === "" ||
+          name.includes(normalizedSearch) ||
+          education.includes(normalizedSearch)) &&
+        matchesStudentFilter(student, activeFilter)
+      );
+    })
+    .sort((a, b) => {
+      if (activeFilter === "a-z") {
+        return (a.name || "").localeCompare(b.name || "", "sv", {
+          sensitivity: "base",
+        });
+      }
+
+      if (activeFilter === "z-a") {
+        return (b.name || "").localeCompare(a.name || "", "sv", {
+          sensitivity: "base",
+        });
+      }
+
+      return 0;
+    });
 
   if (loading)
     return (
@@ -95,6 +137,16 @@ export default function StudentList() {
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           ariaLabel="Sök kandidater"
+        />
+      </div>
+
+      <div className="student-list-filter-row">
+        <Filter
+          value={activeFilter}
+          onChange={setActiveFilter}
+          onClear={() => setActiveFilter("")}
+          options={STUDENT_FILTER_OPTIONS}
+          ariaLabel="Öppna filter för kandidater"
         />
       </div>
 
