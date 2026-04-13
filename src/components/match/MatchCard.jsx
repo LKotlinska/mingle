@@ -2,7 +2,7 @@ import './MatchCard.css'
 export default function MatchCard({ fileName, cardFor }) {
     return(
         <figure className="matchCard">
-            <img src={`./images/${fileName}.png`} alt={`Profile image for ${cardFor}`}/>
+            <img src={`./images/${fileName}.svg`} alt={`Profile image for ${cardFor}`}/>
             <figcaption className='cardCaption'>{cardFor}</figcaption>
         </figure>
     )
