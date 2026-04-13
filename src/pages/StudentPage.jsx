@@ -3,7 +3,7 @@ import "./StudentPage.css";
 import BackLink from "../components/BackLink";
 import PageCardGrid from "../components/PageCardGrid";
 import regIcon from "../assets/images/reg-icon.svg";
-import matchIcon from "../assets/images/match-icon.png";
+import matchIcon from "../assets/images/match-icon.svg";
 import challengeIcon from "../assets/images/challange-icon.svg";
 import companyListIcon from "../assets/images/Company-List-icon.svg";
 import starsIcon from "../assets/images/stars.png";
