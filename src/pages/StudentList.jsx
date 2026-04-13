@@ -25,6 +25,8 @@ export default function StudentList() {
   const [activeFilters, setActiveFilters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   function capitalizeNameWords(value = "") {
     const trimmed = value.trim();
@@ -90,40 +92,42 @@ export default function StudentList() {
 
       return [...currentFilters, filterValue];
     });
-  }
-
-  function matchesStudentFilter(student, filters) {
-    if (!filters.length) return true;
-
-    const education = (student.education || "").toLowerCase();
-
-    const categoryFilters = filters.filter(
-      (filterValue) =>
-        filterValue === "digital-designers" || filterValue === "webbutvecklare",
-    );
-
-    if (!categoryFilters.length) return true;
-
-    return categoryFilters.some((filterValue) => {
-      if (filterValue === "digital-designers") {
-        return education.includes("digital design");
-      }
-
-      if (filterValue === "webbutvecklare") {
-        return education.includes("webbutvecklare");
-      }
-
-      return false;
-    });
+    setPage(1);
   }
 
   useEffect(() => {
     const fetchStudents = async () => {
+      setLoading(true);
+      setError(null);
+
+      const params = new URLSearchParams({ page: String(page), limit: "10" });
+
+      if (searchTerm.trim()) {
+        params.set("search", searchTerm.trim());
+      }
+
+      const categoryFilter = activeFilters.find((filterValue) =>
+        ["digital-designers", "webbutvecklare"].includes(filterValue),
+      );
+
+      if (categoryFilter) {
+        params.set("category", categoryFilter);
+      }
+
+      const sortFilter = activeFilters.find((filterValue) =>
+        ["a-z", "z-a"].includes(filterValue),
+      );
+
+      if (sortFilter) {
+        params.set("sort", sortFilter);
+      }
+
       try {
-        const response = await fetch("/api/students");
+        const response = await fetch(`/api/students?${params.toString()}`);
         if (!response.ok) throw new Error("Kunde inte hämta studenter");
         const data = await response.json();
-        setStudents(data);
+        setStudents(data.data || []);
+        setTotalPages(data.totalPages || 1);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -132,38 +136,10 @@ export default function StudentList() {
     };
 
     fetchStudents();
-  }, []);
+  }, [page, searchTerm, activeFilters]);
+  const showInitialLoading = loading && students.length === 0;
 
-  const normalizedSearch = searchTerm.trim().toLowerCase();
-  const filteredStudents = [...students]
-    .filter((student) => {
-      const name = (student.name || "").toLowerCase();
-      const education = (student.education || "").toLowerCase();
-
-      return (
-        (normalizedSearch === "" ||
-          name.includes(normalizedSearch) ||
-          education.includes(normalizedSearch)) &&
-        matchesStudentFilter(student, activeFilters)
-      );
-    })
-    .sort((a, b) => {
-      if (activeFilters.includes("a-z")) {
-        return (a.name || "").localeCompare(b.name || "", "sv", {
-          sensitivity: "base",
-        });
-      }
-
-      if (activeFilters.includes("z-a")) {
-        return (b.name || "").localeCompare(a.name || "", "sv", {
-          sensitivity: "base",
-        });
-      }
-
-      return 0;
-    });
-
-  if (loading)
+  if (showInitialLoading)
     return (
       <main className="student-list-page">
         <p>Laddar studenter...</p>
@@ -185,7 +161,10 @@ export default function StudentList() {
         <SearchField
           placeholder="Sök namn eller utbildning"
           value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+            setPage(1);
+          }}
           ariaLabel="Sök kandidater"
         />
       </div>
@@ -194,7 +173,10 @@ export default function StudentList() {
         <Filter
           selectedValues={activeFilters}
           onToggle={toggleStudentFilter}
-          onClear={() => setActiveFilters([])}
+          onClear={() => {
+            setActiveFilters([]);
+            setPage(1);
+          }}
           options={STUDENT_FILTER_OPTIONS}
           ariaLabel="Öppna filter för kandidater"
         />
@@ -203,7 +185,7 @@ export default function StudentList() {
       <img src={snake43} alt="" className="student-list-snake" />
 
       <div className="student-grid">
-        {filteredStudents.map((student) => {
+        {students.map((student) => {
           const displayName = capitalizeNameWords(student.name || "");
 
           return (
@@ -247,9 +229,34 @@ export default function StudentList() {
             </div>
           );
         })}
-        {filteredStudents.length === 0 && (
-          <p>Inga kandidater matchar din sökning.</p>
-        )}
+        {students.length === 0 && <p>Inga kandidater matchar din sökning.</p>}
+      </div>
+
+      <div
+        className="list-pagination"
+        aria-label="Sidnavigering för kandidater"
+      >
+        <button
+          type="button"
+          className="pagination-button"
+          onClick={() => setPage((currentPage) => Math.max(currentPage - 1, 1))}
+          disabled={page === 1}
+        >
+          Föregående
+        </button>
+        <span className="pagination-status">
+          Sida {page} av {totalPages}
+        </span>
+        <button
+          type="button"
+          className="pagination-button"
+          onClick={() =>
+            setPage((currentPage) => Math.min(currentPage + 1, totalPages))
+          }
+          disabled={page === totalPages}
+        >
+          Nästa
+        </button>
       </div>
 
       <img src={curl40} alt="" className="student-list-curl-left" />

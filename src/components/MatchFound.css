@@ -138,3 +138,21 @@
 .list-content {
   padding: 0 1em 1em 1em;
 }
+
+.refresh-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.refresh-icon--spinning {
+  animation: refreshSpin 1500ms ease-out;
+}
+
+@keyframes refreshSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

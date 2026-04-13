@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import "./ChallengePage.css";
 import BackLink from "../components/BackLink";
 import challange from "../data/challange.json";
@@ -7,6 +6,7 @@ import challengeImage from "../assets/images/challanges-pic.png";
 
 export default function ChallengePage() {
   const [selectedChallenges, setSelectedChallenges] = useState([]);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const pickThreeRandomChallenges = () => {
     const items = [...challange.data];
@@ -20,7 +20,16 @@ export default function ChallengePage() {
   };
 
   const showThreeChallenges = () => {
-    setSelectedChallenges(pickThreeRandomChallenges());
+    if (isRefreshing) {
+      return;
+    }
+
+    setIsRefreshing(true);
+
+    window.setTimeout(() => {
+      setSelectedChallenges(pickThreeRandomChallenges());
+      setIsRefreshing(false);
+    }, 1500);
   };
 
   return (
@@ -41,9 +50,24 @@ export default function ChallengePage() {
       <button
         className="btnSubmit btnUndo"
         type="button"
+        disabled={isRefreshing}
         onClick={showThreeChallenges}
       >
-        {selectedChallenges.length === 0 ? "Utmaningar" : (<>Nya utmaningar <span className="material-symbols-outlined">autorenew</span></>)}
+        {selectedChallenges.length === 0 ? (
+          "Utmaningar"
+        ) : (
+          <>
+            Nya utmaningar
+            <span
+              className={`material-symbols-outlined refresh-icon ${
+                isRefreshing ? "refresh-icon--spinning" : ""
+              }`}
+              aria-hidden="true"
+            >
+              autorenew
+            </span>
+          </>
+        )}
       </button>
     </main>
   );

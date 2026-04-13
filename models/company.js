@@ -21,6 +21,8 @@ const companySchema = new mongoose.Schema({
   },
 });
 
+companySchema.index({ isPresent: 1, name: 1 });
+
 function validateCompany(company) {
   const schema = Joi.object({
     name: Joi.string()

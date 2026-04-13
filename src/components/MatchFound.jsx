@@ -1,10 +1,26 @@
 import MatchCard from "./match/MatchCard";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "../pages/StudentList.css";
 import "./MatchFound.css";
 
 export default function MatchFound({ companies, onMatch }) {
+  const navigate = useNavigate();
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [best, ...rest] = companies;
+
+  const handleNewMatch = () => {
+    if (isRefreshing) {
+      return;
+    }
+
+    setIsRefreshing(true);
+
+    window.setTimeout(() => {
+      onMatch(null);
+      navigate("/match");
+    }, 1500);
+  };
 
   return (
     <section className="matchSection">
@@ -55,21 +71,29 @@ export default function MatchFound({ companies, onMatch }) {
         </div>
       </div>
       <div className="matchBtnContainer">
-        <Link to="/match">
-          <button
-            className="btnSubmit btnUndo"
-            onClick={() => onMatch(null)}
-            type="button"
+        <button
+          className="btnSubmit btnUndo"
+          onClick={handleNewMatch}
+          type="button"
+          disabled={isRefreshing}
+        >
+          Ny match
+          <span
+            className={`material-symbols-outlined refresh-icon ${
+              isRefreshing ? "refresh-icon--spinning" : ""
+            }`}
+            aria-hidden="true"
           >
-            Ny match
-            <span className="material-symbols-outlined">autorenew</span>
-          </button>
-        </Link>
-        <Link to="/utmaningar">
-          <button className="btnSubmit" type="button">
-            Utmana dig
-          </button>
-        </Link>
+            autorenew
+          </span>
+        </button>
+        <button
+          className="btnSubmit"
+          type="button"
+          onClick={() => navigate("/utmaningar")}
+        >
+          Utmana dig
+        </button>
       </div>
     </section>
   );

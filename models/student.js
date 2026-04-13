@@ -26,6 +26,7 @@ const studentSchema = new mongoose.Schema({
 });
 
 studentSchema.index({ name: 1, education: 1 }, { unique: true });
+studentSchema.index({ createdAt: -1 });
 
 function validateStudent(student) {
   const schema = Joi.object({

@@ -23,6 +23,8 @@ export default function CompanyList() {
   const [activeFilters, setActiveFilters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   function capitalizeNameWords(value = "") {
     const trimmed = value.trim();
@@ -75,47 +77,42 @@ export default function CompanyList() {
 
       return [...currentFilters, filterValue];
     });
-  }
-
-  function matchesCompanyFilter(company, filters) {
-    if (!filters.length) return true;
-
-    const employmentTypes = company.employment || [];
-    const normalizedEmployment = employmentTypes.map((employment) =>
-      (employment || "").toLowerCase(),
-    );
-
-    const categoryFilters = filters.filter(
-      (filterValue) =>
-        filterValue === "digital-designers" || filterValue === "webbutvecklare",
-    );
-
-    if (!categoryFilters.length) return true;
-
-    return categoryFilters.some((filterValue) => {
-      if (filterValue === "digital-designers") {
-        return normalizedEmployment.some((employment) =>
-          employment.includes("digital design"),
-        );
-      }
-
-      if (filterValue === "webbutvecklare") {
-        return normalizedEmployment.some((employment) =>
-          employment.includes("webbutvecklare"),
-        );
-      }
-
-      return false;
-    });
+    setPage(1);
   }
 
   useEffect(() => {
     const fetchCompanies = async () => {
+      setLoading(true);
+      setError(null);
+
+      const params = new URLSearchParams({ page: String(page), limit: "10" });
+
+      if (searchTerm.trim()) {
+        params.set("search", searchTerm.trim());
+      }
+
+      const categoryFilter = activeFilters.find((filterValue) =>
+        ["digital-designers", "webbutvecklare"].includes(filterValue),
+      );
+
+      if (categoryFilter) {
+        params.set("category", categoryFilter);
+      }
+
+      const sortFilter = activeFilters.find((filterValue) =>
+        ["a-z", "z-a"].includes(filterValue),
+      );
+
+      if (sortFilter) {
+        params.set("sort", sortFilter);
+      }
+
       try {
-        const response = await fetch("/api/companies");
+        const response = await fetch(`/api/companies?${params.toString()}`);
         if (!response.ok) throw new Error("Kunde inte hämta företag");
         const data = await response.json();
-        setCompanies(data);
+        setCompanies(data.data || []);
+        setTotalPages(data.totalPages || 1);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -124,38 +121,10 @@ export default function CompanyList() {
     };
 
     fetchCompanies();
-  }, []);
+  }, [page, searchTerm, activeFilters]);
+  const showInitialLoading = loading && companies.length === 0;
 
-  const normalizedSearch = searchTerm.trim().toLowerCase();
-  const filteredCompanies = [...companies]
-    .filter((company) => {
-      const name = (company.name || "").toLowerCase();
-      const employment = (company.employment || []).join(" ").toLowerCase();
-
-      return (
-        (normalizedSearch === "" ||
-          name.includes(normalizedSearch) ||
-          employment.includes(normalizedSearch)) &&
-        matchesCompanyFilter(company, activeFilters)
-      );
-    })
-    .sort((a, b) => {
-      if (activeFilters.includes("a-z")) {
-        return (a.name || "").localeCompare(b.name || "", "sv", {
-          sensitivity: "base",
-        });
-      }
-
-      if (activeFilters.includes("z-a")) {
-        return (b.name || "").localeCompare(a.name || "", "sv", {
-          sensitivity: "base",
-        });
-      }
-
-      return 0;
-    });
-
-  if (loading)
+  if (showInitialLoading)
     return (
       <main className="company-list-page">
         <p>Laddar företag...</p>
@@ -177,7 +146,10 @@ export default function CompanyList() {
         <SearchField
           placeholder="Sök företagsnamn"
           value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+            setPage(1);
+          }}
           ariaLabel="Sök företag"
         />
       </div>
@@ -186,7 +158,10 @@ export default function CompanyList() {
         <Filter
           selectedValues={activeFilters}
           onToggle={toggleCompanyFilter}
-          onClear={() => setActiveFilters([])}
+          onClear={() => {
+            setActiveFilters([]);
+            setPage(1);
+          }}
           options={COMPANY_FILTER_OPTIONS}
           ariaLabel="Öppna filter för företag"
         />
@@ -195,7 +170,7 @@ export default function CompanyList() {
       <img src={snake43} alt="" className="company-list-snake" />
 
       <div className="company-grid">
-        {filteredCompanies.map((company) => {
+        {companies.map((company) => {
           const displayName = capitalizeNameWords(company.name || "");
           const employmentTypes = company.employment || [];
 
@@ -227,9 +202,31 @@ export default function CompanyList() {
             </div>
           );
         })}
-        {filteredCompanies.length === 0 && (
-          <p>Inga företag matchar din sökning.</p>
-        )}
+        {companies.length === 0 && <p>Inga företag matchar din sökning.</p>}
+      </div>
+
+      <div className="list-pagination" aria-label="Sidnavigering för företag">
+        <button
+          type="button"
+          className="pagination-button"
+          onClick={() => setPage((currentPage) => Math.max(currentPage - 1, 1))}
+          disabled={page === 1}
+        >
+          Föregående
+        </button>
+        <span className="pagination-status">
+          Sida {page} av {totalPages}
+        </span>
+        <button
+          type="button"
+          className="pagination-button"
+          onClick={() =>
+            setPage((currentPage) => Math.min(currentPage + 1, totalPages))
+          }
+          disabled={page === totalPages}
+        >
+          Nästa
+        </button>
       </div>
 
       <img src={curl40} alt="" className="company-list-curl-left" />

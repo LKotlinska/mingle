@@ -187,3 +187,36 @@
   .student-card-blob::before {
   background: var(--yrgo-red);
 }
+
+.student-list-page .list-pagination,
+.company-list-page .list-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 1.25rem 1.25rem;
+  flex-wrap: wrap;
+}
+
+.student-list-page .pagination-button,
+.company-list-page .pagination-button {
+  border: 0.0625rem solid var(--yrgo-blue);
+  background: #fff;
+  color: var(--yrgo-blue);
+  border-radius: 999rem;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.student-list-page .pagination-button:disabled,
+.company-list-page .pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.student-list-page .pagination-status,
+.company-list-page .pagination-status {
+  color: var(--yrgo-blue);
+  font-weight: 700;
+}
