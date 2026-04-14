@@ -120,7 +120,7 @@
   line-height: 1.05;
   font-weight: 700;
   word-break: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .student-list-page .student-education {
