@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./ChallengePage.css";
 import BackLink from "../components/BackLink";
 import challange from "../data/challange.json";
-import challengeImage from "../assets/images/challanges-pic.png";
+import challengeImage from "../assets/images/challanges-pic.svg";
 
 export default function ChallengePage() {
   const [selectedChallenges, setSelectedChallenges] = useState([]);

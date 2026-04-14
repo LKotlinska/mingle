@@ -15,7 +15,7 @@ export default function EmploymentField({ formLabel, register, errors, required 
                     value="webbutvecklare"
                     {...register('employment', { required: true })}
                 />
-                <label htmlFor='webbutvecklare'>
+                <label className="employName" htmlFor='webbutvecklare'>
                     Webbutvecklare
                 </label>
             </div>
@@ -28,7 +28,7 @@ export default function EmploymentField({ formLabel, register, errors, required 
                     value="digitaldesigner"
                     {...register('employment', { required: true })}
                 />
-                <label htmlFor='digitaldesigner'>
+                <label className="employName" htmlFor='digitaldesigner'>
                     Digital Designer
                 </label>
             </div>

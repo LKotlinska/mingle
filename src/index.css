@@ -123,6 +123,10 @@ button:disabled {
   gap: 0.25em;
 }
 
+.employName {
+  font-size: 0.9em;
+}
+
 input.errorBorder,
 input[type="checkbox"].errorBorder {
   border: 0.01em solid var(--yrgo-red);
